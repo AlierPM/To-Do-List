@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/AlierPM/webpack-boilerplate/issues"
   },
-  "homepage": "https://alierpm.github.io/webpack-boilerplate/",
+  "homepage": "https://alierpm.github.io/To-Do-List/dist/index.html?",
   "devDependencies": {
     "@babel/core": "^7.18.10",
     "@babel/preset-env": "^7.18.10",

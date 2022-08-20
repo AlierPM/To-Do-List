@@ -2,6 +2,304 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/modules/Task.js":
+/*!*****************************!*\
+  !*** ./src/modules/Task.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Task = /*#__PURE__*/_createClass(function Task(description, completed, id) {
+  _classCallCheck(this, Task);
+
+  this.description = description;
+  this.completed = completed;
+  this.id = id;
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Task);
+
+/***/ }),
+
+/***/ "./src/modules/addTask.js":
+/*!********************************!*\
+  !*** ./src/modules/addTask.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
+/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
+/* harmony import */ var _Task_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Task.js */ "./src/modules/Task.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+var addTask = function addTask(description) {
+  // Check for empty book and add book to booksArray
+  if (description) {
+    var taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    var task = new _Task_js__WEBPACK_IMPORTED_MODULE_2__["default"](description, false, taskArray.length + 1);
+    taskArray = [].concat(_toConsumableArray(taskArray), [task]);
+    (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_0__["default"])(taskArray);
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addTask);
+
+/***/ }),
+
+/***/ "./src/modules/displayList.js":
+/*!************************************!*\
+  !*** ./src/modules/displayList.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _removeTask_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./removeTask.js */ "./src/modules/removeTask.js");
+/* harmony import */ var _editTask_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editTask.js */ "./src/modules/editTask.js");
+/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
+/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
+
+
+
+
+var listHolder = document.getElementById('list-holder');
+
+var displayList = function displayList(taskArray) {
+  listHolder.innerHTML = '';
+  taskArray.forEach(function (item) {
+    listHolder.innerHTML += "\n<div class=\"item-row\">\n<div class=\"list-item\">\n<input id=\"check-".concat(item.id, "\" class=\"list-box\" type=\"checkbox\" name=\"").concat(item.id, "\" value=\"value\">\n<label id=\"label-").concat(item.id, "\" for=\"").concat(item.id, "\">").concat(item.description, "</label><br>\n</div>\n<span class=\"pencil-container\"><i id=\"pencil-").concat(item.id, "\" class='fas fa-pencil-alt pencil'></i></span>\n<span class=\"trash-container\"><i id=\"trash-").concat(item.id, "\" class=\"fa fa-trash-o trash\"></i></span>\n<span class=\"ellip-container\"><i id=\"ellip-").concat(item.id, "\" class=\"fa fa-ellipsis-v icons\"></i></span>    \n</div>");
+  });
+
+  var toggleIcon = function toggleIcon(id, eventType) {
+    if (eventType === 'mouseover') {
+      document.getElementById("pencil-".concat(id)).classList.add('active');
+      document.getElementById("trash-".concat(id)).classList.add('active');
+    } else if (eventType === 'mouseout') {
+      setTimeout(function () {
+        document.getElementById("pencil-".concat(id)).classList.remove('active');
+        document.getElementById("trash-".concat(id)).classList.remove('active');
+      }, 2000);
+    }
+  };
+
+  var pencilContainer = document.querySelectorAll('.pencil-container');
+  var trashContainer = document.querySelectorAll('.trash-container');
+  var ellipContainer = document.querySelectorAll('.ellip-container');
+  var listBox = document.querySelectorAll('.list-box');
+
+  var listenEvent = function listenEvent(itemContainer, eventType) {
+    itemContainer.forEach(function (item) {
+      item.addEventListener(eventType, function (e) {
+        e.preventDefault();
+        var id = parseInt(e.target.id.split('-')[1], 10);
+
+        if (e.target.classList.contains('trash')) {
+          (0,_removeTask_js__WEBPACK_IMPORTED_MODULE_0__["default"])(id);
+          displayList((0,_getStorage_js__WEBPACK_IMPORTED_MODULE_2__["default"])());
+        } else if (e.target.classList.contains('pencil')) {
+          (0,_editTask_js__WEBPACK_IMPORTED_MODULE_1__["default"])(id);
+        } else if (eventType === 'change') {
+          var _taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
+
+          var checkedLabel = document.getElementById("label-".concat(id));
+
+          if (e.target.checked) {
+            checkedLabel.classList.add('line-through');
+            _taskArray[id].completed = true;
+            (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_taskArray);
+          } else {
+            checkedLabel.classList.remove('line-through');
+            _taskArray[id].completed = false;
+            (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_taskArray);
+          }
+        }
+      });
+    });
+  };
+
+  var addEvent = function addEvent(eventType) {
+    ellipContainer.forEach(function (ellip) {
+      ellip.addEventListener(eventType, function (e) {
+        e.preventDefault();
+        var id = e.target.id.split('-')[1];
+        toggleIcon(id, eventType);
+      });
+    });
+  };
+
+  addEvent('mouseover');
+  addEvent('mouseout');
+  listenEvent(trashContainer, 'click');
+  listenEvent(pencilContainer, 'click');
+  listenEvent(listBox, 'change');
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayList);
+
+/***/ }),
+
+/***/ "./src/modules/editTask.js":
+/*!*********************************!*\
+  !*** ./src/modules/editTask.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
+/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
+
+
+
+var editTask = function editTask(id) {
+  var editable = document.getElementById("label-".concat(id));
+  editable.contentEditable = 'true';
+  editable.addEventListener('keyup', function (e) {
+    e.preventDefault();
+
+    if (e.key === 'Enter') {
+      var taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
+      taskArray[id].description = editable.textContent;
+      (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_1__["default"])(taskArray);
+    }
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (editTask);
+
+/***/ }),
+
+/***/ "./src/modules/getStorage.js":
+/*!***********************************!*\
+  !*** ./src/modules/getStorage.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var getLocalStorage = function getLocalStorage() {
+  // Check if data is in storage and convert it to js object
+  if (localStorage.getItem('taskList')) {
+    return JSON.parse(localStorage.getItem('taskList'));
+  }
+
+  return [];
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getLocalStorage);
+
+/***/ }),
+
+/***/ "./src/modules/removeTask.js":
+/*!***********************************!*\
+  !*** ./src/modules/removeTask.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
+/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
+/* harmony import */ var _updateArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./updateArray.js */ "./src/modules/updateArray.js");
+
+
+
+
+var removeTask = function removeTask(id) {
+  var taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
+
+  if (id >= 0) {
+    taskArray = taskArray.filter(function (task) {
+      return task.id !== id;
+    });
+  } else {
+    taskArray = taskArray.filter(function (task) {
+      return !task.completed;
+    });
+  }
+
+  (0,_updateArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(taskArray);
+  (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_1__["default"])(taskArray);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (removeTask);
+
+/***/ }),
+
+/***/ "./src/modules/setStorage.js":
+/*!***********************************!*\
+  !*** ./src/modules/setStorage.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// Update booksArray with data from localStorage
+var setLocalStorage = function setLocalStorage(taskArray) {
+  localStorage.setItem('taskList', JSON.stringify(taskArray));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (setLocalStorage);
+
+/***/ }),
+
+/***/ "./src/modules/updateArray.js":
+/*!************************************!*\
+  !*** ./src/modules/updateArray.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var updateArray = function updateArray(taskArray) {
+  taskArray.forEach(function (task) {
+    task.id = taskArray.indexOf(task) + 1;
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (updateArray);
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/style.css":
 /*!*************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/style.css ***!
@@ -20,9 +318,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
-___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "*,\r\n::after,\r\n::before {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  font-family: Lato, Helvetica, sans-serif;\r\n  font-style: normal;\r\n  color: white;\r\n  background-color: #f6f6f6;\r\n}\r\n\r\nul li {\r\n  list-style: none;\r\n  background-color: #fff;\r\n\r\n  /* width: 100%; */\r\n  max-width: 500px;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.to-do-list {\r\n  width: 100%;\r\n  padding: 20px 5%;\r\n  height: 100%;\r\n  overflow: hidden;\r\n  cursor: pointer;\r\n  transform: translate3d(0, 0, 0);\r\n  float: left;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.selected-list {\r\n  position: relative;\r\n  min-width: 0;\r\n  text-align: center;\r\n  padding-bottom: 1px;\r\n  box-sizing: border-box;\r\n  border-radius: 3px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);\r\n  margin: 0 auto;\r\n  top: 0;\r\n  max-width: 1000px;\r\n  width: 100%;\r\n  margin-top: 5%;\r\n}\r\n\r\n#stats {\r\n  position: relative;\r\n  padding: 0 92px 0 46px;\r\n  height: 50px;\r\n  background-color: #fff;\r\n  width: 100%;\r\n  display: flex;\r\n}\r\n\r\n#stats h2 {\r\n  color: #000;\r\n  font-size: 20px;\r\n  font-weight: 400;\r\n  padding: 20px 0;\r\n  line-height: 20px;\r\n  text-align: initial;\r\n  width: 80%;\r\n}\r\n\r\nhr {\r\n  color: #f6f6f6;\r\n}\r\n\r\n.refresh {\r\n  width: 20%;\r\n  margin-left: 82%;\r\n}\r\n\r\n.refresh .refreshIcon {\r\n  color: #545862;\r\n  padding: 20px 0;\r\n  width: 20%;\r\n  align-items: flex-end;\r\n}\r\n\r\n.list {\r\n  background-color: #fff;\r\n}\r\n\r\n#new-item-form {\r\n  width: 210%;\r\n  display: flex;\r\n}\r\n\r\ninput::-webkit-input-placeholder {\r\n  font-size: 20px;\r\n  line-height: 3;\r\n  font-style: italic;\r\n  padding-left: 4%;\r\n}\r\n\r\n#new-item-form input {\r\n  height: 60px;\r\n}\r\n\r\n#new-item-form #new-item {\r\n  padding: 0 16px;\r\n  width: 80%;\r\n  border-bottom-style: none;\r\n  border-color: #fff;\r\n  opacity: 0.5;\r\n  align-items: initial;\r\n}\r\n\r\n#new-item-form #submit-new-item {\r\n  cursor: pointer;\r\n  background-color: #fff;\r\n  border-block-color: #f6f6f6;\r\n  border-inline-start-color: #fff;\r\n  border-inline-end-color: #fff;\r\n  padding: 0 5%;\r\n}\r\n\r\n#add-item li #submit-new-item::after {\r\n  width: 100%;\r\n}\r\n\r\n.clear-completed {\r\n  opacity: 0.5;\r\n  border-bottom-style: none;\r\n  border-color: #f6f6f6;\r\n  font-size: 20px;\r\n  padding: 16px 0;\r\n}\r\n\r\n#listToDo {\r\n  width: 1000px;\r\n}\r\n\r\n.toDo {\r\n  display: flex;\r\n  max-width: 1000px;\r\n  height: 50px;\r\n}\r\n\r\n.toDo .completed {\r\n  width: 10%;\r\n  background-color: #fff;\r\n  border-style: none;\r\n  font-size: 50px;\r\n  color: hsl(0deg 5% 74%);\r\n}\r\n\r\n.toDo .discription {\r\n  width: 98%;\r\n  color: #000;\r\n  padding-top: 2%;\r\n  font-size: 20px;\r\n  text-align: initial;\r\n  padding-left: 5px;\r\n}\r\n\r\n.toDo .dots {\r\n  width: 20%;\r\n  color: hsl(0deg 5% 74%);\r\n  font-size: 40px;\r\n  text-align: end;\r\n  padding-right: 10%;\r\n  font-weight: 900;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAEA;;;EAGE,SAAS;EACT,UAAU;EACV,sBAAsB;EACtB,8BAA8B;AAChC;;AAEA;EACE,wCAAwC;EACxC,kBAAkB;EAClB,YAAY;EACZ,yBAAyB;AAC3B;;AAEA;EACE,gBAAgB;EAChB,sBAAsB;;EAEtB,iBAAiB;EACjB,gBAAgB;AAClB;;AAEA;EACE,qBAAqB;EACrB,cAAc;AAChB;;AAEA;EACE,WAAW;EACX,gBAAgB;EAChB,YAAY;EACZ,gBAAgB;EAChB,eAAe;EACf,+BAA+B;EAC/B,WAAW;EACX,sBAAsB;AACxB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,kBAAkB;EAClB,mBAAmB;EACnB,sBAAsB;EACtB,kBAAkB;EAClB,yCAAyC;EACzC,cAAc;EACd,MAAM;EACN,iBAAiB;EACjB,WAAW;EACX,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,sBAAsB;EACtB,YAAY;EACZ,sBAAsB;EACtB,WAAW;EACX,aAAa;AACf;;AAEA;EACE,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,eAAe;EACf,iBAAiB;EACjB,mBAAmB;EACnB,UAAU;AACZ;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,UAAU;EACV,gBAAgB;AAClB;;AAEA;EACE,cAAc;EACd,eAAe;EACf,UAAU;EACV,qBAAqB;AACvB;;AAEA;EACE,sBAAsB;AACxB;;AAEA;EACE,WAAW;EACX,aAAa;AACf;;AAEA;EACE,eAAe;EACf,cAAc;EACd,kBAAkB;EAClB,gBAAgB;AAClB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,eAAe;EACf,UAAU;EACV,yBAAyB;EACzB,kBAAkB;EAClB,YAAY;EACZ,oBAAoB;AACtB;;AAEA;EACE,eAAe;EACf,sBAAsB;EACtB,2BAA2B;EAC3B,+BAA+B;EAC/B,6BAA6B;EAC7B,aAAa;AACf;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,YAAY;EACZ,yBAAyB;EACzB,qBAAqB;EACrB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;EACb,iBAAiB;EACjB,YAAY;AACd;;AAEA;EACE,UAAU;EACV,sBAAsB;EACtB,kBAAkB;EAClB,eAAe;EACf,uBAAuB;AACzB;;AAEA;EACE,UAAU;EACV,WAAW;EACX,eAAe;EACf,eAAe;EACf,mBAAmB;EACnB,iBAAiB;AACnB;;AAEA;EACE,UAAU;EACV,uBAAuB;EACvB,eAAe;EACf,eAAe;EACf,kBAAkB;EAClB,gBAAgB;AAClB","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap\");\r\n\r\n*,\r\n::after,\r\n::before {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  font-family: Lato, Helvetica, sans-serif;\r\n  font-style: normal;\r\n  color: white;\r\n  background-color: #f6f6f6;\r\n}\r\n\r\nul li {\r\n  list-style: none;\r\n  background-color: #fff;\r\n\r\n  /* width: 100%; */\r\n  max-width: 500px;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.to-do-list {\r\n  width: 100%;\r\n  padding: 20px 5%;\r\n  height: 100%;\r\n  overflow: hidden;\r\n  cursor: pointer;\r\n  transform: translate3d(0, 0, 0);\r\n  float: left;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.selected-list {\r\n  position: relative;\r\n  min-width: 0;\r\n  text-align: center;\r\n  padding-bottom: 1px;\r\n  box-sizing: border-box;\r\n  border-radius: 3px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);\r\n  margin: 0 auto;\r\n  top: 0;\r\n  max-width: 1000px;\r\n  width: 100%;\r\n  margin-top: 5%;\r\n}\r\n\r\n#stats {\r\n  position: relative;\r\n  padding: 0 92px 0 46px;\r\n  height: 50px;\r\n  background-color: #fff;\r\n  width: 100%;\r\n  display: flex;\r\n}\r\n\r\n#stats h2 {\r\n  color: #000;\r\n  font-size: 20px;\r\n  font-weight: 400;\r\n  padding: 20px 0;\r\n  line-height: 20px;\r\n  text-align: initial;\r\n  width: 80%;\r\n}\r\n\r\nhr {\r\n  color: #f6f6f6;\r\n}\r\n\r\n.refresh {\r\n  width: 20%;\r\n  margin-left: 82%;\r\n}\r\n\r\n.refresh .refreshIcon {\r\n  color: #545862;\r\n  padding: 20px 0;\r\n  width: 20%;\r\n  align-items: flex-end;\r\n}\r\n\r\n.list {\r\n  background-color: #fff;\r\n}\r\n\r\n#new-item-form {\r\n  width: 210%;\r\n  display: flex;\r\n}\r\n\r\ninput::-webkit-input-placeholder {\r\n  font-size: 20px;\r\n  line-height: 3;\r\n  font-style: italic;\r\n  padding-left: 4%;\r\n}\r\n\r\n#new-item-form input {\r\n  height: 60px;\r\n}\r\n\r\n#new-item-form #new-item {\r\n  padding: 0 16px;\r\n  width: 80%;\r\n  border-bottom-style: none;\r\n  border-color: #fff;\r\n  opacity: 0.5;\r\n  align-items: initial;\r\n}\r\n\r\n#new-item-form #submit-new-item {\r\n  cursor: pointer;\r\n  background-color: #fff;\r\n  border-block-color: #f6f6f6;\r\n  border-inline-start-color: #fff;\r\n  border-inline-end-color: #fff;\r\n  padding: 0 5%;\r\n}\r\n\r\n#add-item li #submit-new-item::after {\r\n  width: 100%;\r\n}\r\n\r\n.clear-completed {\r\n  opacity: 0.5;\r\n  border-bottom-style: none;\r\n  border-color: #f6f6f6;\r\n  font-size: 20px;\r\n  padding: 16px 0;\r\n}\r\n\r\n#listToDo {\r\n  width: 1000px;\r\n}\r\n\r\n.toDo {\r\n  display: flex;\r\n  max-width: 1000px;\r\n  height: 50px;\r\n}\r\n\r\n.toDo .completed {\r\n  width: 10%;\r\n  background-color: #fff;\r\n  border-style: none;\r\n  font-size: 50px;\r\n  color: hsl(0deg 5% 74%);\r\n}\r\n\r\n.toDo .discription {\r\n  width: 98%;\r\n  color: #000;\r\n  padding-top: 2%;\r\n  font-size: 20px;\r\n  text-align: initial;\r\n  padding-left: 5px;\r\n}\r\n\r\n.toDo .dots {\r\n  width: 20%;\r\n  color: hsl(0deg 5% 74%);\r\n  font-size: 40px;\r\n  text-align: end;\r\n  padding-right: 10%;\r\n  font-weight: 900;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n  box-sizing: border-box;\r\n  margin: 0 auto auto auto;\r\n  width: 90%;\r\n  padding: 10% 10%;\r\n  background-color: #f5f5f5;\r\n  font-size: 16px;\r\n}\r\n\r\n#list-container {\r\n  background-color: #fff;\r\n}\r\n\r\n.container-row,\r\n.item-row {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  padding: 1.25rem;\r\n  border-bottom: 2px solid #f5f5f5;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n.first-icon {\r\n  color: #ababab;\r\n}\r\n\r\n#list-input {\r\n  border: none;\r\n  width: 80%;\r\n  padding: 0.75rem;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n#list-input::placeholder {\r\n  font-style: italic;\r\n  font-size: larger;\r\n}\r\n\r\n.list-item {\r\n  width: 80%;\r\n}\r\n\r\n.trash,\r\n.pencil {\r\n  display: none;\r\n  color: #ff7f50;\r\n}\r\n\r\n.active {\r\n  display: block;\r\n}\r\n\r\n.icons {\r\n  color: #dcdcdc;\r\n}\r\n\r\n.ellip-container {\r\n  cursor: all-scroll;\r\n}\r\n\r\nlabel:focus,\r\ninput:focus {\r\n  outline: none;\r\n}\r\n\r\n.line-through {\r\n  text-decoration: line-through;\r\n}\r\n\r\n#clear-btn {\r\n  background: #737373;\r\n  color: #fff;\r\n  border: none;\r\n  text-align: center;\r\n  padding: 1.25rem;\r\n  width: 100%;\r\n  font-size: 1.25rem;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;EACtB,wBAAwB;EACxB,UAAU;EACV,gBAAgB;EAChB,yBAAyB;EACzB,eAAe;AACjB;;AAEA;EACE,sBAAsB;AACxB;;AAEA;;EAEE,aAAa;EACb,8BAA8B;EAC9B,mBAAmB;EACnB,gBAAgB;EAChB,gCAAgC;EAChC,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,YAAY;EACZ,UAAU;EACV,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;EAClB,iBAAiB;AACnB;;AAEA;EACE,UAAU;AACZ;;AAEA;;EAEE,aAAa;EACb,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;;EAEE,aAAa;AACf;;AAEA;EACE,6BAA6B;AAC/B;;AAEA;EACE,mBAAmB;EACnB,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,gBAAgB;EAChB,WAAW;EACX,kBAAkB;AACpB","sourcesContent":["body {\r\n  box-sizing: border-box;\r\n  margin: 0 auto auto auto;\r\n  width: 90%;\r\n  padding: 10% 10%;\r\n  background-color: #f5f5f5;\r\n  font-size: 16px;\r\n}\r\n\r\n#list-container {\r\n  background-color: #fff;\r\n}\r\n\r\n.container-row,\r\n.item-row {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  padding: 1.25rem;\r\n  border-bottom: 2px solid #f5f5f5;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n.first-icon {\r\n  color: #ababab;\r\n}\r\n\r\n#list-input {\r\n  border: none;\r\n  width: 80%;\r\n  padding: 0.75rem;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n#list-input::placeholder {\r\n  font-style: italic;\r\n  font-size: larger;\r\n}\r\n\r\n.list-item {\r\n  width: 80%;\r\n}\r\n\r\n.trash,\r\n.pencil {\r\n  display: none;\r\n  color: #ff7f50;\r\n}\r\n\r\n.active {\r\n  display: block;\r\n}\r\n\r\n.icons {\r\n  color: #dcdcdc;\r\n}\r\n\r\n.ellip-container {\r\n  cursor: all-scroll;\r\n}\r\n\r\nlabel:focus,\r\ninput:focus {\r\n  outline: none;\r\n}\r\n\r\n.line-through {\r\n  text-decoration: line-through;\r\n}\r\n\r\n#clear-btn {\r\n  background: #737373;\r\n  color: #fff;\r\n  border: none;\r\n  text-align: center;\r\n  padding: 1.25rem;\r\n  width: 100%;\r\n  font-size: 1.25rem;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -612,27 +909,36 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
+/* harmony import */ var _modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/displayList.js */ "./src/modules/displayList.js");
+/* harmony import */ var _modules_addTask_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/addTask.js */ "./src/modules/addTask.js");
+/* harmony import */ var _modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/getStorage.js */ "./src/modules/getStorage.js");
+/* harmony import */ var _modules_removeTask_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/removeTask.js */ "./src/modules/removeTask.js");
 
-var listArray = [{
-  description: 'Coding session',
-  complete: true,
-  index: 0
-}, {
-  description: 'Evening team meeting',
-  complete: false,
-  index: 1
-}];
-var listToDo = document.getElementById('listToDo');
 
-var onLoad = function onLoad() {
-  listArray.forEach(function (task) {
-    listToDo.innerHTML += "<ul id=\"item-list\" class=\"items\">\n                        <li class=\"toDo\">\n                            <button class=\"completed\">\u25A1</button>\n                            <div class=\"discription\">".concat(task.description, "</div>\n                            <div class=\"dots\">\u22EE</div>\n                        </li>\n                    </ul>");
-  });
-};
 
-window.onload = onLoad();
+
+
+var listInput = document.getElementById('list-input');
+var clearBtn = document.getElementById('clear-btn');
+listInput.addEventListener('keyup', function (e) {
+  e.preventDefault();
+
+  if (e.key === 'Enter') {
+    (0,_modules_addTask_js__WEBPACK_IMPORTED_MODULE_2__["default"])(e.target.value);
+    listInput.value = '';
+    (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])());
+  }
+});
+clearBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  (0,_modules_removeTask_js__WEBPACK_IMPORTED_MODULE_4__["default"])(-1);
+  (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])());
+});
+window.addEventListener('load', function () {
+  (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])());
+});
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundlefddedc7d60907473a0ac.js.map
+//# sourceMappingURL=bundlea7ac703ecee6fdbbd894.js.map

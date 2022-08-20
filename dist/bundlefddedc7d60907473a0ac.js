@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "form {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\nbody {\r\n  background-color: #f6f6f6;\r\n}\r\n\r\n.main-div {\r\n  box-shadow: 1px 6px 17px -1px rgba(34, 60, 80, 0.19);\r\n  width: 40vw;\r\n  font-family: Poppins, serif;\r\n  font-size: 18px;\r\n  background-color: #fff;\r\n}\r\n\r\n.toDoContainer {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  flex-direction: column;\r\n}\r\n\r\n.input-div {\r\n  padding: 15px;\r\n  border-bottom: 1px solid #d0d0d0;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\ninput {\r\n  border: none;\r\n  padding: 15px;\r\n  font-style: oblique;\r\n  font-size: 18px;\r\n  border-bottom: 1px solid #d0d0d0;\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n#clear {\r\n  text-align: center;\r\n  color: #989898;\r\n  margin: 0;\r\n  padding: 25px;\r\n}\r\n\r\n#clear:hover {\r\n  cursor: pointer;\r\n}\r\n\r\ni {\r\n  float: right;\r\n}\r\n\r\n#header {\r\n  font-weight: bold;\r\n  padding: 15px;\r\n}\r\n\r\n.listContent {\r\n  flex: 2;\r\n  border: none;\r\n  margin: 18px 0;\r\n}\r\n\r\n.listContent-disable {\r\n  text-decoration: line-through;\r\n  opacity: 0.6;\r\n}\r\n\r\n.remove-icon-active {\r\n  display: none;\r\n}\r\n\r\n.icon2 {\r\n  display: none;\r\n}\r\n\r\n.changeBg {\r\n  background-color: #fffed3;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAEA;EACE,aAAa;EACb,sBAAsB;AACxB;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,oDAAoD;EACpD,WAAW;EACX,2BAA2B;EAC3B,eAAe;EACf,sBAAsB;AACxB;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,gCAAgC;EAChC,aAAa;EACb,mBAAmB;AACrB;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,eAAe;EACf,gCAAgC;AAClC;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,cAAc;EACd,SAAS;EACT,aAAa;AACf;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,iBAAiB;EACjB,aAAa;AACf;;AAEA;EACE,OAAO;EACP,YAAY;EACZ,cAAc;AAChB;;AAEA;EACE,6BAA6B;EAC7B,YAAY;AACd;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,yBAAyB;AAC3B","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');\r\n\r\nform {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\nbody {\r\n  background-color: #f6f6f6;\r\n}\r\n\r\n.main-div {\r\n  box-shadow: 1px 6px 17px -1px rgba(34, 60, 80, 0.19);\r\n  width: 40vw;\r\n  font-family: Poppins, serif;\r\n  font-size: 18px;\r\n  background-color: #fff;\r\n}\r\n\r\n.toDoContainer {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  flex-direction: column;\r\n}\r\n\r\n.input-div {\r\n  padding: 15px;\r\n  border-bottom: 1px solid #d0d0d0;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\ninput {\r\n  border: none;\r\n  padding: 15px;\r\n  font-style: oblique;\r\n  font-size: 18px;\r\n  border-bottom: 1px solid #d0d0d0;\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n#clear {\r\n  text-align: center;\r\n  color: #989898;\r\n  margin: 0;\r\n  padding: 25px;\r\n}\r\n\r\n#clear:hover {\r\n  cursor: pointer;\r\n}\r\n\r\ni {\r\n  float: right;\r\n}\r\n\r\n#header {\r\n  font-weight: bold;\r\n  padding: 15px;\r\n}\r\n\r\n.listContent {\r\n  flex: 2;\r\n  border: none;\r\n  margin: 18px 0;\r\n}\r\n\r\n.listContent-disable {\r\n  text-decoration: line-through;\r\n  opacity: 0.6;\r\n}\r\n\r\n.remove-icon-active {\r\n  display: none;\r\n}\r\n\r\n.icon2 {\r\n  display: none;\r\n}\r\n\r\n.changeBg {\r\n  background-color: #fffed3;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "*,\r\n::after,\r\n::before {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  font-family: Lato, Helvetica, sans-serif;\r\n  font-style: normal;\r\n  color: white;\r\n  background-color: #f6f6f6;\r\n}\r\n\r\nul li {\r\n  list-style: none;\r\n  background-color: #fff;\r\n\r\n  /* width: 100%; */\r\n  max-width: 500px;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.to-do-list {\r\n  width: 100%;\r\n  padding: 20px 5%;\r\n  height: 100%;\r\n  overflow: hidden;\r\n  cursor: pointer;\r\n  transform: translate3d(0, 0, 0);\r\n  float: left;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.selected-list {\r\n  position: relative;\r\n  min-width: 0;\r\n  text-align: center;\r\n  padding-bottom: 1px;\r\n  box-sizing: border-box;\r\n  border-radius: 3px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);\r\n  margin: 0 auto;\r\n  top: 0;\r\n  max-width: 1000px;\r\n  width: 100%;\r\n  margin-top: 5%;\r\n}\r\n\r\n#stats {\r\n  position: relative;\r\n  padding: 0 92px 0 46px;\r\n  height: 50px;\r\n  background-color: #fff;\r\n  width: 100%;\r\n  display: flex;\r\n}\r\n\r\n#stats h2 {\r\n  color: #000;\r\n  font-size: 20px;\r\n  font-weight: 400;\r\n  padding: 20px 0;\r\n  line-height: 20px;\r\n  text-align: initial;\r\n  width: 80%;\r\n}\r\n\r\nhr {\r\n  color: #f6f6f6;\r\n}\r\n\r\n.refresh {\r\n  width: 20%;\r\n  margin-left: 82%;\r\n}\r\n\r\n.refresh .refreshIcon {\r\n  color: #545862;\r\n  padding: 20px 0;\r\n  width: 20%;\r\n  align-items: flex-end;\r\n}\r\n\r\n.list {\r\n  background-color: #fff;\r\n}\r\n\r\n#new-item-form {\r\n  width: 210%;\r\n  display: flex;\r\n}\r\n\r\ninput::-webkit-input-placeholder {\r\n  font-size: 20px;\r\n  line-height: 3;\r\n  font-style: italic;\r\n  padding-left: 4%;\r\n}\r\n\r\n#new-item-form input {\r\n  height: 60px;\r\n}\r\n\r\n#new-item-form #new-item {\r\n  padding: 0 16px;\r\n  width: 80%;\r\n  border-bottom-style: none;\r\n  border-color: #fff;\r\n  opacity: 0.5;\r\n  align-items: initial;\r\n}\r\n\r\n#new-item-form #submit-new-item {\r\n  cursor: pointer;\r\n  background-color: #fff;\r\n  border-block-color: #f6f6f6;\r\n  border-inline-start-color: #fff;\r\n  border-inline-end-color: #fff;\r\n  padding: 0 5%;\r\n}\r\n\r\n#add-item li #submit-new-item::after {\r\n  width: 100%;\r\n}\r\n\r\n.clear-completed {\r\n  opacity: 0.5;\r\n  border-bottom-style: none;\r\n  border-color: #f6f6f6;\r\n  font-size: 20px;\r\n  padding: 16px 0;\r\n}\r\n\r\n#listToDo {\r\n  width: 1000px;\r\n}\r\n\r\n.toDo {\r\n  display: flex;\r\n  max-width: 1000px;\r\n  height: 50px;\r\n}\r\n\r\n.toDo .completed {\r\n  width: 10%;\r\n  background-color: #fff;\r\n  border-style: none;\r\n  font-size: 50px;\r\n  color: hsl(0deg 5% 74%);\r\n}\r\n\r\n.toDo .discription {\r\n  width: 98%;\r\n  color: #000;\r\n  padding-top: 2%;\r\n  font-size: 20px;\r\n  text-align: initial;\r\n  padding-left: 5px;\r\n}\r\n\r\n.toDo .dots {\r\n  width: 20%;\r\n  color: hsl(0deg 5% 74%);\r\n  font-size: 40px;\r\n  text-align: end;\r\n  padding-right: 10%;\r\n  font-weight: 900;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAEA;;;EAGE,SAAS;EACT,UAAU;EACV,sBAAsB;EACtB,8BAA8B;AAChC;;AAEA;EACE,wCAAwC;EACxC,kBAAkB;EAClB,YAAY;EACZ,yBAAyB;AAC3B;;AAEA;EACE,gBAAgB;EAChB,sBAAsB;;EAEtB,iBAAiB;EACjB,gBAAgB;AAClB;;AAEA;EACE,qBAAqB;EACrB,cAAc;AAChB;;AAEA;EACE,WAAW;EACX,gBAAgB;EAChB,YAAY;EACZ,gBAAgB;EAChB,eAAe;EACf,+BAA+B;EAC/B,WAAW;EACX,sBAAsB;AACxB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,kBAAkB;EAClB,mBAAmB;EACnB,sBAAsB;EACtB,kBAAkB;EAClB,yCAAyC;EACzC,cAAc;EACd,MAAM;EACN,iBAAiB;EACjB,WAAW;EACX,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,sBAAsB;EACtB,YAAY;EACZ,sBAAsB;EACtB,WAAW;EACX,aAAa;AACf;;AAEA;EACE,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,eAAe;EACf,iBAAiB;EACjB,mBAAmB;EACnB,UAAU;AACZ;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,UAAU;EACV,gBAAgB;AAClB;;AAEA;EACE,cAAc;EACd,eAAe;EACf,UAAU;EACV,qBAAqB;AACvB;;AAEA;EACE,sBAAsB;AACxB;;AAEA;EACE,WAAW;EACX,aAAa;AACf;;AAEA;EACE,eAAe;EACf,cAAc;EACd,kBAAkB;EAClB,gBAAgB;AAClB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,eAAe;EACf,UAAU;EACV,yBAAyB;EACzB,kBAAkB;EAClB,YAAY;EACZ,oBAAoB;AACtB;;AAEA;EACE,eAAe;EACf,sBAAsB;EACtB,2BAA2B;EAC3B,+BAA+B;EAC/B,6BAA6B;EAC7B,aAAa;AACf;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,YAAY;EACZ,yBAAyB;EACzB,qBAAqB;EACrB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;EACb,iBAAiB;EACjB,YAAY;AACd;;AAEA;EACE,UAAU;EACV,sBAAsB;EACtB,kBAAkB;EAClB,eAAe;EACf,uBAAuB;AACzB;;AAEA;EACE,UAAU;EACV,WAAW;EACX,eAAe;EACf,eAAe;EACf,mBAAmB;EACnB,iBAAiB;AACnB;;AAEA;EACE,UAAU;EACV,uBAAuB;EACvB,eAAe;EACf,eAAe;EACf,kBAAkB;EAClB,gBAAgB;AAClB","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap\");\r\n\r\n*,\r\n::after,\r\n::before {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  font-family: Lato, Helvetica, sans-serif;\r\n  font-style: normal;\r\n  color: white;\r\n  background-color: #f6f6f6;\r\n}\r\n\r\nul li {\r\n  list-style: none;\r\n  background-color: #fff;\r\n\r\n  /* width: 100%; */\r\n  max-width: 500px;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.to-do-list {\r\n  width: 100%;\r\n  padding: 20px 5%;\r\n  height: 100%;\r\n  overflow: hidden;\r\n  cursor: pointer;\r\n  transform: translate3d(0, 0, 0);\r\n  float: left;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.selected-list {\r\n  position: relative;\r\n  min-width: 0;\r\n  text-align: center;\r\n  padding-bottom: 1px;\r\n  box-sizing: border-box;\r\n  border-radius: 3px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);\r\n  margin: 0 auto;\r\n  top: 0;\r\n  max-width: 1000px;\r\n  width: 100%;\r\n  margin-top: 5%;\r\n}\r\n\r\n#stats {\r\n  position: relative;\r\n  padding: 0 92px 0 46px;\r\n  height: 50px;\r\n  background-color: #fff;\r\n  width: 100%;\r\n  display: flex;\r\n}\r\n\r\n#stats h2 {\r\n  color: #000;\r\n  font-size: 20px;\r\n  font-weight: 400;\r\n  padding: 20px 0;\r\n  line-height: 20px;\r\n  text-align: initial;\r\n  width: 80%;\r\n}\r\n\r\nhr {\r\n  color: #f6f6f6;\r\n}\r\n\r\n.refresh {\r\n  width: 20%;\r\n  margin-left: 82%;\r\n}\r\n\r\n.refresh .refreshIcon {\r\n  color: #545862;\r\n  padding: 20px 0;\r\n  width: 20%;\r\n  align-items: flex-end;\r\n}\r\n\r\n.list {\r\n  background-color: #fff;\r\n}\r\n\r\n#new-item-form {\r\n  width: 210%;\r\n  display: flex;\r\n}\r\n\r\ninput::-webkit-input-placeholder {\r\n  font-size: 20px;\r\n  line-height: 3;\r\n  font-style: italic;\r\n  padding-left: 4%;\r\n}\r\n\r\n#new-item-form input {\r\n  height: 60px;\r\n}\r\n\r\n#new-item-form #new-item {\r\n  padding: 0 16px;\r\n  width: 80%;\r\n  border-bottom-style: none;\r\n  border-color: #fff;\r\n  opacity: 0.5;\r\n  align-items: initial;\r\n}\r\n\r\n#new-item-form #submit-new-item {\r\n  cursor: pointer;\r\n  background-color: #fff;\r\n  border-block-color: #f6f6f6;\r\n  border-inline-start-color: #fff;\r\n  border-inline-end-color: #fff;\r\n  padding: 0 5%;\r\n}\r\n\r\n#add-item li #submit-new-item::after {\r\n  width: 100%;\r\n}\r\n\r\n.clear-completed {\r\n  opacity: 0.5;\r\n  border-bottom-style: none;\r\n  border-color: #f6f6f6;\r\n  font-size: 20px;\r\n  padding: 16px 0;\r\n}\r\n\r\n#listToDo {\r\n  width: 1000px;\r\n}\r\n\r\n.toDo {\r\n  display: flex;\r\n  max-width: 1000px;\r\n  height: 50px;\r\n}\r\n\r\n.toDo .completed {\r\n  width: 10%;\r\n  background-color: #fff;\r\n  border-style: none;\r\n  font-size: 50px;\r\n  color: hsl(0deg 5% 74%);\r\n}\r\n\r\n.toDo .discription {\r\n  width: 98%;\r\n  color: #000;\r\n  padding-top: 2%;\r\n  font-size: 20px;\r\n  text-align: initial;\r\n  padding-left: 5px;\r\n}\r\n\r\n.toDo .dots {\r\n  width: 20%;\r\n  color: hsl(0deg 5% 74%);\r\n  font-size: 40px;\r\n  text-align: end;\r\n  padding-right: 10%;\r\n  font-weight: 900;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -612,67 +612,27 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+var listArray = [{
+  description: 'Coding session',
+  complete: true,
+  index: 0
+}, {
+  description: 'Evening team meeting',
+  complete: false,
+  index: 1
+}];
+var listToDo = document.getElementById('listToDo');
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-
-
-var Template = /*#__PURE__*/_createClass(function Template(description, completed, index) {
-  _classCallCheck(this, Template);
-
-  this.description = description;
-  this.completed = completed;
-  this.index = index;
-});
-
-var array = [];
-
-var sendToLocalStorage = function sendToLocalStorage() {
-  localStorage.setItem('list', JSON.stringify(array));
+var onLoad = function onLoad() {
+  listArray.forEach(function (task) {
+    listToDo.innerHTML += "<ul id=\"item-list\" class=\"items\">\n                        <li class=\"toDo\">\n                            <button class=\"completed\">\u25A1</button>\n                            <div class=\"discription\">".concat(task.description, "</div>\n                            <div class=\"dots\">\u22EE</div>\n                        </li>\n                    </ul>");
+  });
 };
 
-var toDoContainer = document.querySelector('.toDoContainer');
-toDoContainer.innerHTML = "\n  <div class=\"main-div\">\n    <p id=\"header\">Today's To Do <i class=\"fas fa-sync\"></i></p>\n    <form class=\"form\">\n      <input class=\"dataEntry\" type=\"text\" placeholder=\"Add to your list...\" required></input>\n    </form>\n    <p id=\"clear\">Clear all completed</p>\n  </div>\n"; // Create list
-
-var createList = function createList() {
-  var form = document.querySelector('.form');
-  var list = document.createElement('div');
-  list.className = 'input-div';
-  form.appendChild(list);
-  var checkboxes = document.createElement('input');
-  checkboxes.className = 'input';
-  checkboxes.type = 'checkbox';
-  var listText = document.createElement('p');
-  listText.className = 'listContent';
-  var threeDots = document.createElement('i');
-  threeDots.className = 'fas fa-ellipsis-v';
-  var trashIcon = document.createElement('i');
-  trashIcon.className = 'fas fa-trash-alt icon2';
-  list.append(checkboxes, listText, threeDots, trashIcon);
-}; // Window Load event
-
-
-window.addEventListener('load', function () {
-  var getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
-
-  for (var i = 0; i < getFromLocalStorage.length; i += 1) {
-    createList();
-    var listText = document.querySelectorAll('.listContent');
-    listText[i].textContent = getFromLocalStorage[i].description;
-
-    if (getFromLocalStorage[i].completed === true) {
-      getFromLocalStorage[i].completed = false;
-    }
-
-    localStorage.setItem('list', JSON.stringify(getFromLocalStorage));
-    array = getFromLocalStorage;
-  }
-});
+window.onload = onLoad();
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle69c16ddea1ca4c256260.js.map
+//# sourceMappingURL=bundlefddedc7d60907473a0ac.js.map

@@ -1,29 +1,27 @@
 import './style.css';
+import displayList from './modules/displayList.js';
+import addTask from './modules/addTask.js';
+import getLocalStorage from './modules/getStorage.js';
+import removeTask from './modules/removeTask.js';
 
-const listArray = [
-  {
-    description: 'Coding session',
-    complete: true,
-    index: 0,
-  },
-  {
-    description: 'Evening team meeting',
-    complete: false,
-    index: 1,
-  },
-];
+const listInput = document.getElementById('list-input');
+const clearBtn = document.getElementById('clear-btn');
 
-const listToDo = document.getElementById('listToDo');
+listInput.addEventListener('keyup', (e) => {
+  e.preventDefault();
+  if (e.key === 'Enter') {
+    addTask(e.target.value);
+    listInput.value = '';
+    displayList(getLocalStorage());
+  }
+});
 
-const onLoad = () => {
-  listArray.forEach((task) => {
-    listToDo.innerHTML += `<ul id="item-list" class="items">
-                        <li class="toDo">
-                            <button class="completed">□</button>
-                            <div class="discription">${task.description}</div>
-                            <div class="dots">⋮</div>
-                        </li>
-                    </ul>`;
-  });
-};
-window.onload = onLoad();
+clearBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  removeTask(-1);
+  displayList(getLocalStorage());
+});
+
+window.addEventListener('load', () => {
+  displayList(getLocalStorage());
+});

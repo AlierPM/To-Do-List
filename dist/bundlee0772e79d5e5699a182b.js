@@ -2,304 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/modules/Task.js":
-/*!*****************************!*\
-  !*** ./src/modules/Task.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Task = /*#__PURE__*/_createClass(function Task(description, completed, id) {
-  _classCallCheck(this, Task);
-
-  this.description = description;
-  this.completed = completed;
-  this.id = id;
-});
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Task);
-
-/***/ }),
-
-/***/ "./src/modules/addTask.js":
-/*!********************************!*\
-  !*** ./src/modules/addTask.js ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
-/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
-/* harmony import */ var _Task_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Task.js */ "./src/modules/Task.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-
-
-var addTask = function addTask(description) {
-  // Check for empty book and add book to booksArray
-  if (description) {
-    var taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
-    var task = new _Task_js__WEBPACK_IMPORTED_MODULE_2__["default"](description, false, taskArray.length + 1);
-    taskArray = [].concat(_toConsumableArray(taskArray), [task]);
-    (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_0__["default"])(taskArray);
-  }
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addTask);
-
-/***/ }),
-
-/***/ "./src/modules/displayList.js":
-/*!************************************!*\
-  !*** ./src/modules/displayList.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _removeTask_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./removeTask.js */ "./src/modules/removeTask.js");
-/* harmony import */ var _editTask_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editTask.js */ "./src/modules/editTask.js");
-/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
-/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
-
-
-
-
-var listHolder = document.getElementById('list-holder');
-
-var displayList = function displayList(taskArray) {
-  listHolder.innerHTML = '';
-  taskArray.forEach(function (item) {
-    listHolder.innerHTML += "\n<div class=\"item-row\">\n<div class=\"list-item\">\n<input id=\"check-".concat(item.id, "\" class=\"list-box\" type=\"checkbox\" name=\"").concat(item.id, "\" value=\"value\">\n<label id=\"label-").concat(item.id, "\" for=\"").concat(item.id, "\">").concat(item.description, "</label><br>\n</div>\n<span class=\"pencil-container\"><i id=\"pencil-").concat(item.id, "\" class='fas fa-pencil-alt pencil'></i></span>\n<span class=\"trash-container\"><i id=\"trash-").concat(item.id, "\" class=\"fa fa-trash-o trash\"></i></span>\n<span class=\"ellip-container\"><i id=\"ellip-").concat(item.id, "\" class=\"fa fa-ellipsis-v icons\"></i></span>    \n</div>");
-  });
-
-  var toggleIcon = function toggleIcon(id, eventType) {
-    if (eventType === 'mouseover') {
-      document.getElementById("pencil-".concat(id)).classList.add('active');
-      document.getElementById("trash-".concat(id)).classList.add('active');
-    } else if (eventType === 'mouseout') {
-      setTimeout(function () {
-        document.getElementById("pencil-".concat(id)).classList.remove('active');
-        document.getElementById("trash-".concat(id)).classList.remove('active');
-      }, 2000);
-    }
-  };
-
-  var pencilContainer = document.querySelectorAll('.pencil-container');
-  var trashContainer = document.querySelectorAll('.trash-container');
-  var ellipContainer = document.querySelectorAll('.ellip-container');
-  var listBox = document.querySelectorAll('.list-box');
-
-  var listenEvent = function listenEvent(itemContainer, eventType) {
-    itemContainer.forEach(function (item) {
-      item.addEventListener(eventType, function (e) {
-        e.preventDefault();
-        var id = parseInt(e.target.id.split('-')[1], 10);
-
-        if (e.target.classList.contains('trash')) {
-          (0,_removeTask_js__WEBPACK_IMPORTED_MODULE_0__["default"])(id);
-          displayList((0,_getStorage_js__WEBPACK_IMPORTED_MODULE_2__["default"])());
-        } else if (e.target.classList.contains('pencil')) {
-          (0,_editTask_js__WEBPACK_IMPORTED_MODULE_1__["default"])(id);
-        } else if (eventType === 'change') {
-          var _taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
-
-          var checkedLabel = document.getElementById("label-".concat(id));
-
-          if (e.target.checked) {
-            checkedLabel.classList.add('line-through');
-            _taskArray[id].completed = true;
-            (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_taskArray);
-          } else {
-            checkedLabel.classList.remove('line-through');
-            _taskArray[id].completed = false;
-            (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_taskArray);
-          }
-        }
-      });
-    });
-  };
-
-  var addEvent = function addEvent(eventType) {
-    ellipContainer.forEach(function (ellip) {
-      ellip.addEventListener(eventType, function (e) {
-        e.preventDefault();
-        var id = e.target.id.split('-')[1];
-        toggleIcon(id, eventType);
-      });
-    });
-  };
-
-  addEvent('mouseover');
-  addEvent('mouseout');
-  listenEvent(trashContainer, 'click');
-  listenEvent(pencilContainer, 'click');
-  listenEvent(listBox, 'change');
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayList);
-
-/***/ }),
-
-/***/ "./src/modules/editTask.js":
-/*!*********************************!*\
-  !*** ./src/modules/editTask.js ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
-/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
-
-
-
-var editTask = function editTask(id) {
-  var editable = document.getElementById("label-".concat(id));
-  editable.contentEditable = 'true';
-  editable.addEventListener('keyup', function (e) {
-    e.preventDefault();
-
-    if (e.key === 'Enter') {
-      var taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
-      taskArray[id].description = editable.textContent;
-      (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_1__["default"])(taskArray);
-    }
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (editTask);
-
-/***/ }),
-
-/***/ "./src/modules/getStorage.js":
-/*!***********************************!*\
-  !*** ./src/modules/getStorage.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var getLocalStorage = function getLocalStorage() {
-  // Check if data is in storage and convert it to js object
-  if (localStorage.getItem('taskList')) {
-    return JSON.parse(localStorage.getItem('taskList'));
-  }
-
-  return [];
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getLocalStorage);
-
-/***/ }),
-
-/***/ "./src/modules/removeTask.js":
-/*!***********************************!*\
-  !*** ./src/modules/removeTask.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
-/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
-/* harmony import */ var _updateArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./updateArray.js */ "./src/modules/updateArray.js");
-
-
-
-
-var removeTask = function removeTask(id) {
-  var taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
-
-  if (id >= 0) {
-    taskArray = taskArray.filter(function (task) {
-      return task.id !== id;
-    });
-  } else {
-    taskArray = taskArray.filter(function (task) {
-      return !task.completed;
-    });
-  }
-
-  (0,_updateArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(taskArray);
-  (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_1__["default"])(taskArray);
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (removeTask);
-
-/***/ }),
-
-/***/ "./src/modules/setStorage.js":
-/*!***********************************!*\
-  !*** ./src/modules/setStorage.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-// Update booksArray with data from localStorage
-var setLocalStorage = function setLocalStorage(taskArray) {
-  localStorage.setItem('taskList', JSON.stringify(taskArray));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (setLocalStorage);
-
-/***/ }),
-
-/***/ "./src/modules/updateArray.js":
-/*!************************************!*\
-  !*** ./src/modules/updateArray.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var updateArray = function updateArray(taskArray) {
-  taskArray.forEach(function (task) {
-    task.id = taskArray.indexOf(task) + 1;
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (updateArray);
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/style.css":
 /*!*************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/style.css ***!
@@ -318,8 +20,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n  box-sizing: border-box;\r\n  margin: 0 auto auto auto;\r\n  width: 90%;\r\n  padding: 10% 10%;\r\n  background-color: #f5f5f5;\r\n  font-size: 16px;\r\n}\r\n\r\n#list-container {\r\n  background-color: #fff;\r\n}\r\n\r\n.container-row,\r\n.item-row {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  padding: 1.25rem;\r\n  border-bottom: 2px solid #f5f5f5;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n.first-icon {\r\n  color: #ababab;\r\n}\r\n\r\n#list-input {\r\n  border: none;\r\n  width: 80%;\r\n  padding: 0.75rem;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n#list-input::placeholder {\r\n  font-style: italic;\r\n  font-size: larger;\r\n}\r\n\r\n.list-item {\r\n  width: 80%;\r\n}\r\n\r\n.trash,\r\n.pencil {\r\n  display: none;\r\n  color: #ff7f50;\r\n}\r\n\r\n.active {\r\n  display: block;\r\n}\r\n\r\n.icons {\r\n  color: #dcdcdc;\r\n}\r\n\r\n.ellip-container {\r\n  cursor: all-scroll;\r\n}\r\n\r\nlabel:focus,\r\ninput:focus {\r\n  outline: none;\r\n}\r\n\r\n.line-through {\r\n  text-decoration: line-through;\r\n}\r\n\r\n#clear-btn {\r\n  background: #737373;\r\n  color: #fff;\r\n  border: none;\r\n  text-align: center;\r\n  padding: 1.25rem;\r\n  width: 100%;\r\n  font-size: 1.25rem;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;EACtB,wBAAwB;EACxB,UAAU;EACV,gBAAgB;EAChB,yBAAyB;EACzB,eAAe;AACjB;;AAEA;EACE,sBAAsB;AACxB;;AAEA;;EAEE,aAAa;EACb,8BAA8B;EAC9B,mBAAmB;EACnB,gBAAgB;EAChB,gCAAgC;EAChC,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,YAAY;EACZ,UAAU;EACV,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;EAClB,iBAAiB;AACnB;;AAEA;EACE,UAAU;AACZ;;AAEA;;EAEE,aAAa;EACb,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;;EAEE,aAAa;AACf;;AAEA;EACE,6BAA6B;AAC/B;;AAEA;EACE,mBAAmB;EACnB,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,gBAAgB;EAChB,WAAW;EACX,kBAAkB;AACpB","sourcesContent":["body {\r\n  box-sizing: border-box;\r\n  margin: 0 auto auto auto;\r\n  width: 90%;\r\n  padding: 10% 10%;\r\n  background-color: #f5f5f5;\r\n  font-size: 16px;\r\n}\r\n\r\n#list-container {\r\n  background-color: #fff;\r\n}\r\n\r\n.container-row,\r\n.item-row {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  padding: 1.25rem;\r\n  border-bottom: 2px solid #f5f5f5;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n.first-icon {\r\n  color: #ababab;\r\n}\r\n\r\n#list-input {\r\n  border: none;\r\n  width: 80%;\r\n  padding: 0.75rem;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n#list-input::placeholder {\r\n  font-style: italic;\r\n  font-size: larger;\r\n}\r\n\r\n.list-item {\r\n  width: 80%;\r\n}\r\n\r\n.trash,\r\n.pencil {\r\n  display: none;\r\n  color: #ff7f50;\r\n}\r\n\r\n.active {\r\n  display: block;\r\n}\r\n\r\n.icons {\r\n  color: #dcdcdc;\r\n}\r\n\r\n.ellip-container {\r\n  cursor: all-scroll;\r\n}\r\n\r\nlabel:focus,\r\ninput:focus {\r\n  outline: none;\r\n}\r\n\r\n.line-through {\r\n  text-decoration: line-through;\r\n}\r\n\r\n#clear-btn {\r\n  background: #737373;\r\n  color: #fff;\r\n  border: none;\r\n  text-align: center;\r\n  padding: 1.25rem;\r\n  width: 100%;\r\n  font-size: 1.25rem;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "form {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\nbody {\r\n  background-color: #f6f6f6;\r\n}\r\n\r\n.main-div {\r\n  box-shadow: 1px 6px 17px -1px rgba(34, 60, 80, 0.19);\r\n  width: 40vw;\r\n  font-family: Poppins, serif;\r\n  font-size: 18px;\r\n  background-color: #fff;\r\n}\r\n\r\nsection {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  flex-direction: column;\r\n}\r\n\r\n.input-div {\r\n  padding: 15px;\r\n  border-bottom: 1px solid #d0d0d0;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\ninput {\r\n  border: none;\r\n  padding: 15px;\r\n  font-style: oblique;\r\n  font-size: 18px;\r\n  border-bottom: 1px solid #d0d0d0;\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n#clear {\r\n  text-align: center;\r\n  color: #989898;\r\n  margin: 0;\r\n  padding: 25px;\r\n}\r\n\r\n#clear:hover {\r\n  cursor: pointer;\r\n}\r\n\r\ni {\r\n  float: right;\r\n}\r\n\r\n#header {\r\n  font-weight: bold;\r\n  padding: 15px;\r\n}\r\n\r\n.listContent {\r\n  flex: 2;\r\n  border: none;\r\n  margin: 18px 0;\r\n}\r\n\r\n.listContent-disable {\r\n  text-decoration: line-through;\r\n  opacity: 0.6;\r\n}\r\n\r\n.remove-icon-active {\r\n  display: none;\r\n}\r\n\r\n.icon2 {\r\n  display: none;\r\n}\r\n\r\n.changeBg {\r\n  background-color: #fffed3;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAEA;EACE,aAAa;EACb,sBAAsB;AACxB;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,oDAAoD;EACpD,WAAW;EACX,2BAA2B;EAC3B,eAAe;EACf,sBAAsB;AACxB;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,gCAAgC;EAChC,aAAa;EACb,mBAAmB;AACrB;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,eAAe;EACf,gCAAgC;AAClC;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,cAAc;EACd,SAAS;EACT,aAAa;AACf;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,iBAAiB;EACjB,aAAa;AACf;;AAEA;EACE,OAAO;EACP,YAAY;EACZ,cAAc;AAChB;;AAEA;EACE,6BAA6B;EAC7B,YAAY;AACd;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,yBAAyB;AAC3B","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');\r\n\r\nform {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\nbody {\r\n  background-color: #f6f6f6;\r\n}\r\n\r\n.main-div {\r\n  box-shadow: 1px 6px 17px -1px rgba(34, 60, 80, 0.19);\r\n  width: 40vw;\r\n  font-family: Poppins, serif;\r\n  font-size: 18px;\r\n  background-color: #fff;\r\n}\r\n\r\nsection {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  flex-direction: column;\r\n}\r\n\r\n.input-div {\r\n  padding: 15px;\r\n  border-bottom: 1px solid #d0d0d0;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\ninput {\r\n  border: none;\r\n  padding: 15px;\r\n  font-style: oblique;\r\n  font-size: 18px;\r\n  border-bottom: 1px solid #d0d0d0;\r\n}\r\n\r\np {\r\n  padding: 10px;\r\n}\r\n\r\n#clear {\r\n  text-align: center;\r\n  color: #989898;\r\n  margin: 0;\r\n  padding: 25px;\r\n}\r\n\r\n#clear:hover {\r\n  cursor: pointer;\r\n}\r\n\r\ni {\r\n  float: right;\r\n}\r\n\r\n#header {\r\n  font-weight: bold;\r\n  padding: 15px;\r\n}\r\n\r\n.listContent {\r\n  flex: 2;\r\n  border: none;\r\n  margin: 18px 0;\r\n}\r\n\r\n.listContent-disable {\r\n  text-decoration: line-through;\r\n  opacity: 0.6;\r\n}\r\n\r\n.remove-icon-active {\r\n  display: none;\r\n}\r\n\r\n.icon2 {\r\n  display: none;\r\n}\r\n\r\n.changeBg {\r\n  background-color: #fffed3;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -909,36 +612,179 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
-/* harmony import */ var _modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/displayList.js */ "./src/modules/displayList.js");
-/* harmony import */ var _modules_addTask_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/addTask.js */ "./src/modules/addTask.js");
-/* harmony import */ var _modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/getStorage.js */ "./src/modules/getStorage.js");
-/* harmony import */ var _modules_removeTask_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/removeTask.js */ "./src/modules/removeTask.js");
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+ // import adder from './functions.js';
+
+var Template = /*#__PURE__*/_createClass(function Template(description, completed, index) {
+  _classCallCheck(this, Template);
+
+  this.description = description;
+  this.completed = completed;
+  this.index = index;
+});
+
+var array = [];
+
+var sendToLocalStorage = function sendToLocalStorage() {
+  localStorage.setItem('list', JSON.stringify(array));
+};
+
+var section = document.querySelector('section');
+section.innerHTML = "\n  <div class=\"main-div\">\n    <p id=\"header\">Today's To Do <i class=\"fas fa-sync\"></i></p>\n    <form class=\"form\">\n      <input class=\"dataEntry\" type=\"text\" placeholder=\"Add to your list...\" required></input>\n    </form>\n    <p id=\"clear\">Clear all completed</p>\n  </div>\n"; // Create list
+
+var createList = function createList() {
+  var form = document.querySelector('.form');
+  var list = document.createElement('div');
+  list.className = 'input-div';
+  form.appendChild(list);
+  var checkboxes = document.createElement('input');
+  checkboxes.className = 'input';
+  checkboxes.type = 'checkbox';
+  var listText = document.createElement('p');
+  listText.className = 'listContent';
+  var threeDots = document.createElement('i');
+  threeDots.className = 'fas fa-ellipsis-v';
+  var trashIcon = document.createElement('i');
+  trashIcon.className = 'fas fa-trash-alt icon2';
+  list.append(checkboxes, listText, threeDots, trashIcon); // Add event to checkboxes
+
+  var count = 1;
+  checkboxes.addEventListener('click', function () {
+    threeDots.classList.toggle('remove-icon-active');
+    trashIcon.classList.toggle('icon2');
+    listText.classList.toggle('listContent-disable');
+    list.classList.toggle('changeBg');
+    var getting = JSON.parse(localStorage.getItem('list'));
+    var empty = [];
+    var hammasi = document.querySelectorAll('.input-div');
+
+    for (var i = 0; i < getting.length; i += 1) {
+      if (hammasi[i].classList.contains('changeBg')) {
+        getting[i].completed = true;
+        count += 1;
+      } else {
+        getting[i].completed = false;
+      }
+
+      empty.push(getting[i]);
+      localStorage.setItem('list', JSON.stringify(empty));
+    }
+  });
+  var clearAll = document.querySelector('#clear');
+  clearAll.addEventListener('click', function () {
+    var getting = JSON.parse(localStorage.getItem('list'));
+    var variable = document.querySelectorAll('.changeBg');
+
+    for (var i = 0; i < variable.length; i += 1) {
+      form.removeChild(variable[i]);
+    }
+
+    var empty = [];
+
+    for (var _i = 0; _i < getting.length; _i += 1) {
+      if (getting[_i].completed === true) {
+        continue;
+      }
+
+      empty.push(getting[_i]);
+    }
+
+    localStorage.setItem('list', JSON.stringify(empty));
+  }); // Remove from list event
+
+  trashIcon.addEventListener('click', function () {
+    form.removeChild(list);
+    var getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
+    var result = getFromLocalStorage.filter(function (word) {
+      return word.description === listText.textContent;
+    });
+    var empty = [];
+
+    for (var i = 0; i < getFromLocalStorage.length; i += 1) {
+      if (result[0].description === getFromLocalStorage[i].description) {
+        continue;
+      }
+
+      empty.push(getFromLocalStorage[i]);
+    }
+
+    localStorage.setItem('list', JSON.stringify(empty));
+  });
+  threeDots.addEventListener('click', function () {
+    var editInput = document.createElement('input');
+    editInput.type = 'text';
+    editInput.className = 'listContent';
+    editInput.style.backgroundColor = '#fffed3';
+    list.style.backgroundColor = '#fffed3';
+    editInput.value = listText.textContent;
+    list.replaceChild(editInput, listText);
+    editInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter' && editInput.value) {
+        var getting = JSON.parse(localStorage.getItem('list'));
+        var result = getting.filter(function (word) {
+          return word.description === listText.textContent;
+        });
+        var empty = [];
+
+        for (var i = 0; i < getting.length; i += 1) {
+          if (getting[i].index === result[0].index) {
+            getting[i].description = editInput.value;
+          }
+
+          empty.push(getting[i]);
+          localStorage.setItem('list', JSON.stringify(empty));
+        }
+
+        list.replaceChild(listText, editInput);
+        listText.textContent = editInput.value;
+        list.style.backgroundColor = '#fff';
+      }
+    });
+  });
+}; // Entering list event
 
 
+var dataEntry = document.querySelector('.dataEntry');
+dataEntry.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter' && dataEntry.value) {
+    var object = new Template(dataEntry.value, false, array.length);
+    array.push(object);
+    e.preventDefault();
+    createList();
+    var listText = document.querySelectorAll('.listContent');
 
+    for (var i = 0; i < array.length; i += 1) {
+      listText[i].textContent = array[i].description;
+    }
 
-
-var listInput = document.getElementById('list-input');
-var clearBtn = document.getElementById('clear-btn');
-listInput.addEventListener('keyup', function (e) {
-  e.preventDefault();
-
-  if (e.key === 'Enter') {
-    (0,_modules_addTask_js__WEBPACK_IMPORTED_MODULE_2__["default"])(e.target.value);
-    listInput.value = '';
-    (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])());
+    dataEntry.value = null;
+    sendToLocalStorage();
   }
-});
-clearBtn.addEventListener('click', function (e) {
-  e.preventDefault();
-  (0,_modules_removeTask_js__WEBPACK_IMPORTED_MODULE_4__["default"])(-1);
-  (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])());
-});
+}); // Window Load event
+
 window.addEventListener('load', function () {
-  (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])());
+  var getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
+
+  for (var i = 0; i < getFromLocalStorage.length; i += 1) {
+    createList();
+    var listText = document.querySelectorAll('.listContent');
+    listText[i].textContent = getFromLocalStorage[i].description;
+
+    if (getFromLocalStorage[i].completed === true) {
+      getFromLocalStorage[i].completed = false;
+    }
+
+    localStorage.setItem('list', JSON.stringify(getFromLocalStorage));
+    array = getFromLocalStorage;
+  }
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundlea7ac703ecee6fdbbd894.js.map
+//# sourceMappingURL=bundlee0772e79d5e5699a182b.js.map

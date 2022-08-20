@@ -27,8 +27,8 @@ devServer:{
 module:{
   rules:[
     {
-      test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader'],
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader'],
     },
     {
       test: /\.js$/,
@@ -44,13 +44,17 @@ module:{
       test: /\.(png|svg|jpg|gif)$/i,
       type: 'asset/resource',
     },
+    {
+      test: /\.(woff|woff2|eot|ttf|otf)$/i,
+      type: 'asset/resource',
+    },
   ],
 },
 plugins: [
   new HtmlWebpackPlugin({
     title: 'Webpack App',
     filename: 'index.html',
-    template: 'src/template.html',
+    template: './src/index.html',
   }),
   new BundleAnalyzerPlugin(),
 ],

@@ -652,9 +652,27 @@ var createList = function createList() {
   var trashIcon = document.createElement('i');
   trashIcon.className = 'fas fa-trash-alt icon2';
   list.append(checkboxes, listText, threeDots, trashIcon);
-};
+}; // Window Load event
+
+
+window.addEventListener('load', function () {
+  var getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
+
+  for (var i = 0; i < getFromLocalStorage.length; i += 1) {
+    createList();
+    var listText = document.querySelectorAll('.listContent');
+    listText[i].textContent = getFromLocalStorage[i].description;
+
+    if (getFromLocalStorage[i].completed === true) {
+      getFromLocalStorage[i].completed = false;
+    }
+
+    localStorage.setItem('list', JSON.stringify(getFromLocalStorage));
+    array = getFromLocalStorage;
+  }
+});
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle882da58074e5d9aa3df3.js.map
+//# sourceMappingURL=bundle69c16ddea1ca4c256260.js.map

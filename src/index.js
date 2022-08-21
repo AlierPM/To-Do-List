@@ -1,27 +1,34 @@
 import './style.css';
-import displayList from './modules/displayList.js';
-import addTask from './modules/addTask.js';
-import getLocalStorage from './modules/getStorage.js';
-import removeTask from './modules/removeTask.js';
+import List from './modules/crud.js';
 
-const listInput = document.getElementById('list-input');
-const clearBtn = document.getElementById('clear-btn');
+const todoForm = document.querySelector('.todo-form');
+const todoList = document.querySelector('.todo-list');
+const todoInput = document.querySelector('.todo-input');
+const addBtn = document.querySelector('.add-button');
+const clearBtn = document.querySelector('.clear-button');
+const list = new List();
+list.loadTasks();
 
-listInput.addEventListener('keyup', (e) => {
-  e.preventDefault();
-  if (e.key === 'Enter') {
-    addTask(e.target.value);
-    listInput.value = '';
-    displayList(getLocalStorage());
+const load = () => {
+  if (todoInput.value.trim()) {
+    list.addTodo(todoInput.value);
+    todoList.innerHTML = '';
+    todoInput.value = '';
+    list.loadTasks();
   }
+};
+
+clearBtn.addEventListener('click', () => {
+  list.clearAll();
+  list.loadTasks();
 });
 
-clearBtn.addEventListener('click', (e) => {
+todoForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  removeTask(-1);
-  displayList(getLocalStorage());
+  load();
 });
 
-window.addEventListener('load', () => {
-  displayList(getLocalStorage());
+addBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  load();
 });

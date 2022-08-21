@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">  
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="style.css" rel="stylesheet">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">    
-    <script src="https://kit.fontawesome.com/41d21b4473.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>To Do List App</title>
-  <script defer src="bundle64122f9c5e3c945684ee.js"></script></head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <title>To Do List</title>
+  <script defer src="bundle1baf64bc97bdf714e5f7.js"></script></head>
   <body>
-    <div id="list-container">
-      <div id="title-container" class="container-row">
-        <span id="list-title">Today's To Do</span>
-        <span><i class="fas fa-sync-alt first-icon"></i></span>
+    <div class="container">
+      <div class="title">
+        <h1>Today's To Do</h1>
+        <i class="fas fa-sync-alt sync"></i>
       </div>
-      <div id="input-container" class="container-row">
-        <input id="list-input" type="text" placeholder="Add to your list...">
-        <span><i class="fas fa-level-down-alt icons"></i></span> 
-      </div>
-      <div id="list-holder"></div>
-      <button id="clear-btn">Clear all completed</button>
+      <form class="todo-form">
+        <input class="todo-input" type="text" placeholder="Add to your list" />
+        <button class="add-button">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+      </form>
+      <ul class="todo-list"></ul>
+      <button class="clear-button">Clear All Completed</button>
     </div>
   </body>
 </html>

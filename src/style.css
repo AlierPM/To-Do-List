@@ -1,79 +1,91 @@
-body {
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  margin: 0 auto auto auto;
-  width: 90%;
-  padding: 10% 10%;
-  background-color: #f5f5f5;
-  font-size: 16px;
+  font-family: "Roboto", sans-serif;
 }
 
-#list-container {
-  background-color: #fff;
+.container {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.28) 0 2px 8px;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  width: 30rem;
+  top: 50%;
+  left: 50%;
 }
 
-.container-row,
-.item-row {
+.title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem;
-  border-bottom: 2px solid #f5f5f5;
-  font-size: 1.25rem;
+  padding: 2.5%;
 }
 
-.first-icon {
-  color: #ababab;
+.todo-form {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0;
+  position: relative;
+  border-top: 0.5px solid #e9e9e9;
+  border-bottom: 0.5px solid #e9e9e9;
 }
 
-#list-input {
+.todo-edit {
   border: none;
-  width: 80%;
-  padding: 0.75rem;
-  font-size: 1.25rem;
 }
 
-#list-input::placeholder {
-  font-style: italic;
-  font-size: larger;
-}
-
-.list-item {
-  width: 80%;
-}
-
-.trash,
-.pencil {
-  display: none;
-  color: #ff7f50;
-}
-
-.active {
-  display: block;
-}
-
-.icons {
-  color: #dcdcdc;
-}
-
-.ellip-container {
-  cursor: all-scroll;
-}
-
-label:focus,
-input:focus {
+.todo-input {
+  border: none;
   outline: none;
+  font-style: italic;
+  padding: 3.5%;
 }
 
-.line-through {
+.todo-item {
+  padding: 3.5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 0.5px solid #e9e9e9;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.add-button {
+  position: relative;
+  right: 3.2%;
+}
+
+.clear-button {
+  padding: 3.5%;
+  cursor: pointer;
+  text-align: center;
+  background-color: #e9e9e9;
+  width: inherit;
+}
+
+.checked {
   text-decoration: line-through;
 }
 
-#clear-btn {
-  background: #737373;
-  color: #fff;
+.checkbox,
+i {
+  cursor: pointer;
+}
+
+.task-class {
   border: none;
-  text-align: center;
-  padding: 1.25rem;
-  width: 100%;
-  font-size: 1.25rem;
+}
+
+.task-class:focus {
+  outline: none;
 }

@@ -2,9 +2,9 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/modules/Task.js":
+/***/ "./src/modules/crud.js":
 /*!*****************************!*\
-  !*** ./src/modules/Task.js ***!
+  !*** ./src/modules/crud.js ***!
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -12,291 +12,150 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var List = /*#__PURE__*/function () {
+  function List() {
+    _classCallCheck(this, List);
 
-var Task = /*#__PURE__*/_createClass(function Task(description, completed, id) {
-  _classCallCheck(this, Task);
-
-  this.description = description;
-  this.completed = completed;
-  this.id = id;
-});
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Task);
-
-/***/ }),
-
-/***/ "./src/modules/addTask.js":
-/*!********************************!*\
-  !*** ./src/modules/addTask.js ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
-/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
-/* harmony import */ var _Task_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Task.js */ "./src/modules/Task.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-
-
-var addTask = function addTask(description) {
-  // Check for empty book and add book to booksArray
-  if (description) {
-    var taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
-    var task = new _Task_js__WEBPACK_IMPORTED_MODULE_2__["default"](description, false, taskArray.length + 1);
-    taskArray = [].concat(_toConsumableArray(taskArray), [task]);
-    (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_0__["default"])(taskArray);
+    this.todos = [];
   }
-};
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addTask);
-
-/***/ }),
-
-/***/ "./src/modules/displayList.js":
-/*!************************************!*\
-  !*** ./src/modules/displayList.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _removeTask_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./removeTask.js */ "./src/modules/removeTask.js");
-/* harmony import */ var _editTask_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editTask.js */ "./src/modules/editTask.js");
-/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
-/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
-
-
-
-
-var listHolder = document.getElementById('list-holder');
-
-var displayList = function displayList(taskArray) {
-  listHolder.innerHTML = '';
-  taskArray.forEach(function (item) {
-    listHolder.innerHTML += "\n<div class=\"item-row\">\n<div class=\"list-item\">\n<input id=\"check-".concat(item.id, "\" class=\"list-box\" type=\"checkbox\" name=\"").concat(item.id, "\" value=\"value\">\n<label id=\"label-").concat(item.id, "\" for=\"").concat(item.id, "\">").concat(item.description, "</label><br>\n</div>\n<span class=\"pencil-container\"><i id=\"pencil-").concat(item.id, "\" class='fas fa-pencil-alt pencil'></i></span>\n<span class=\"trash-container\"><i id=\"trash-").concat(item.id, "\" class=\"fa fa-trash-o trash\"></i></span>\n<span class=\"ellip-container\"><i id=\"ellip-").concat(item.id, "\" class=\"fa fa-ellipsis-v icons\"></i></span>    \n</div>");
-  });
-
-  var toggleIcon = function toggleIcon(id, eventType) {
-    if (eventType === 'mouseover') {
-      document.getElementById("pencil-".concat(id)).classList.add('active');
-      document.getElementById("trash-".concat(id)).classList.add('active');
-    } else if (eventType === 'mouseout') {
-      setTimeout(function () {
-        document.getElementById("pencil-".concat(id)).classList.remove('active');
-        document.getElementById("trash-".concat(id)).classList.remove('active');
-      }, 2000);
+  _createClass(List, [{
+    key: "getLS",
+    value: function getLS() {
+      this.todos = JSON.parse(localStorage.getItem('todos')) || [];
     }
-  };
+  }, {
+    key: "saveLS",
+    value: function saveLS() {
+      localStorage.setItem('todos', JSON.stringify(this.todos));
+    }
+  }, {
+    key: "addTodo",
+    value: function addTodo(value) {
+      var length = this.todos.length + 1;
+      var todo = {
+        description: value,
+        completed: false,
+        index: length
+      };
+      this.todos.push(todo);
+      this.saveLS();
+    }
+  }, {
+    key: "updateIndex",
+    value: function updateIndex() {
+      var num = 1;
+      this.todos.forEach(function (task) {
+        task.index = num;
+        num += 1;
+      });
+    }
+  }, {
+    key: "remove",
+    value: function remove(id) {
+      var _this = this;
 
-  var pencilContainer = document.querySelectorAll('.pencil-container');
-  var trashContainer = document.querySelectorAll('.trash-container');
-  var ellipContainer = document.querySelectorAll('.ellip-container');
-  var listBox = document.querySelectorAll('.list-box');
+      this.updateIndex();
+      this.todos.forEach(function (task) {
+        if (task.index === Number(id)) {
+          _this.todos.splice(task.index - 1, 1);
 
-  var listenEvent = function listenEvent(itemContainer, eventType) {
-    itemContainer.forEach(function (item) {
-      item.addEventListener(eventType, function (e) {
-        e.preventDefault();
-        var id = parseInt(e.target.id.split('-')[1], 10);
-
-        if (e.target.classList.contains('trash')) {
-          (0,_removeTask_js__WEBPACK_IMPORTED_MODULE_0__["default"])(id);
-          displayList((0,_getStorage_js__WEBPACK_IMPORTED_MODULE_2__["default"])());
-        } else if (e.target.classList.contains('pencil')) {
-          (0,_editTask_js__WEBPACK_IMPORTED_MODULE_1__["default"])(id);
-        } else if (eventType === 'change') {
-          var _taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
-
-          var checkedLabel = document.getElementById("label-".concat(id));
-
-          if (e.target.checked) {
-            checkedLabel.classList.add('line-through');
-            _taskArray[id].completed = true;
-            (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_taskArray);
-          } else {
-            checkedLabel.classList.remove('line-through');
-            _taskArray[id].completed = false;
-            (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_taskArray);
-          }
+          _this.updateIndex();
         }
       });
-    });
-  };
-
-  var addEvent = function addEvent(eventType) {
-    ellipContainer.forEach(function (ellip) {
-      ellip.addEventListener(eventType, function (e) {
-        e.preventDefault();
-        var id = e.target.id.split('-')[1];
-        toggleIcon(id, eventType);
-      });
-    });
-  };
-
-  addEvent('mouseover');
-  addEvent('mouseout');
-  listenEvent(trashContainer, 'click');
-  listenEvent(pencilContainer, 'click');
-  listenEvent(listBox, 'change');
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayList);
-
-/***/ }),
-
-/***/ "./src/modules/editTask.js":
-/*!*********************************!*\
-  !*** ./src/modules/editTask.js ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
-/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
-
-
-
-var editTask = function editTask(id) {
-  var editable = document.getElementById("label-".concat(id));
-  editable.contentEditable = 'true';
-  editable.addEventListener('keyup', function (e) {
-    e.preventDefault();
-
-    if (e.key === 'Enter') {
-      var taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
-      taskArray[id].description = editable.textContent;
-      (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_1__["default"])(taskArray);
     }
-  });
-};
+  }, {
+    key: "clearAll",
+    value: function clearAll() {
+      this.todos = this.todos.filter(function (task) {
+        return task.completed === false;
+      });
+      this.saveLS();
+    }
+  }, {
+    key: "loadTasks",
+    value: function loadTasks() {
+      var _this2 = this;
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (editTask);
+      var todoList = document.querySelector('.todo-list');
 
-/***/ }),
+      var createItem = function createItem(task) {
+        return "<div class=\"todo-item\">\n       <div id=\"".concat(task.index, "\">\n        <input type=\"checkbox\" name=\"box\" class=\"checkbox\" ").concat(task.completed ? 'checked' : '', " id=").concat(task.index, ">\n        <input id=\"").concat(task.index, "\" class=").concat(task.completed ? 'checked task-class' : 'task-class', " value=\"").concat(task.description, "\" type=\"text\">\n       </div>\n       <button class=\"remove-button\" id=\"").concat(task.index, "\">\n       <i class=\"fa-solid fa-trash-can\"></i>\n       </button>\n      </div>");
+      };
 
-/***/ "./src/modules/getStorage.js":
-/*!***********************************!*\
-  !*** ./src/modules/getStorage.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+      this.getLS();
+      todoList.innerHTML = '';
+      this.todos.forEach(function (task) {
+        return todoList.insertAdjacentHTML('beforeend', createItem(task));
+      });
+      var check = document.querySelectorAll('.checkbox');
+      var taskClass = todoList.querySelectorAll('.task-class');
+      check.forEach(function (checkbox, id) {
+        checkbox.addEventListener('change', function () {
+          if (checkbox.checked) {
+            var _taskClass$id;
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var getLocalStorage = function getLocalStorage() {
-  // Check if data is in storage and convert it to js object
-  if (localStorage.getItem('taskList')) {
-    return JSON.parse(localStorage.getItem('taskList'));
-  }
+            (_taskClass$id = taskClass[id]) === null || _taskClass$id === void 0 ? void 0 : _taskClass$id.classList.add('checked');
+            _this2.todos = _this2.todos.map(function (task) {
+              if (task.index === parseInt(checkbox.parentElement.id, 10)) {
+                task.completed = true;
+              }
 
-  return [];
-};
+              return task;
+            });
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getLocalStorage);
+            _this2.saveLS();
+          } else {
+            var _taskClass$id2;
 
-/***/ }),
+            (_taskClass$id2 = taskClass[id]) === null || _taskClass$id2 === void 0 ? void 0 : _taskClass$id2.classList.remove('checked');
+            _this2.todos = _this2.todos.map(function (task) {
+              if (task.index === parseInt(checkbox.parentElement.id, 10)) {
+                task.completed = false;
+              }
 
-/***/ "./src/modules/removeTask.js":
-/*!***********************************!*\
-  !*** ./src/modules/removeTask.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+              return task;
+            });
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _getStorage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getStorage.js */ "./src/modules/getStorage.js");
-/* harmony import */ var _setStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setStorage.js */ "./src/modules/setStorage.js");
-/* harmony import */ var _updateArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./updateArray.js */ "./src/modules/updateArray.js");
+            _this2.saveLS();
+          }
+        });
+      });
+      var removeBtn = document.querySelectorAll('.remove-button');
+      removeBtn.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var id = e.currentTarget.id;
 
+          _this2.remove(id);
 
+          _this2.saveLS();
 
+          todoList.innerHTML = '';
 
-var removeTask = function removeTask(id) {
-  var taskArray = (0,_getStorage_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
+          _this2.loadTasks(_this2.todos);
+        });
+      });
+      taskClass.forEach(function (textarea) {
+        textarea.addEventListener('change', function () {
+          _this2.todos[textarea.id - 1].description = textarea.value;
 
-  if (id >= 0) {
-    taskArray = taskArray.filter(function (task) {
-      return task.id !== id;
-    });
-  } else {
-    taskArray = taskArray.filter(function (task) {
-      return !task.completed;
-    });
-  }
+          _this2.saveLS();
+        });
+      });
+    }
+  }]);
 
-  (0,_updateArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(taskArray);
-  (0,_setStorage_js__WEBPACK_IMPORTED_MODULE_1__["default"])(taskArray);
-};
+  return List;
+}();
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (removeTask);
-
-/***/ }),
-
-/***/ "./src/modules/setStorage.js":
-/*!***********************************!*\
-  !*** ./src/modules/setStorage.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-// Update booksArray with data from localStorage
-var setLocalStorage = function setLocalStorage(taskArray) {
-  localStorage.setItem('taskList', JSON.stringify(taskArray));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (setLocalStorage);
-
-/***/ }),
-
-/***/ "./src/modules/updateArray.js":
-/*!************************************!*\
-  !*** ./src/modules/updateArray.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var updateArray = function updateArray(taskArray) {
-  taskArray.forEach(function (task) {
-    task.id = taskArray.indexOf(task) + 1;
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (updateArray);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (List);
 
 /***/ }),
 
@@ -319,7 +178,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n  box-sizing: border-box;\r\n  margin: 0 auto auto auto;\r\n  width: 90%;\r\n  padding: 10% 10%;\r\n  background-color: #f5f5f5;\r\n  font-size: 16px;\r\n}\r\n\r\n#list-container {\r\n  background-color: #fff;\r\n}\r\n\r\n.container-row,\r\n.item-row {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  padding: 1.25rem;\r\n  border-bottom: 2px solid #f5f5f5;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n.first-icon {\r\n  color: #ababab;\r\n}\r\n\r\n#list-input {\r\n  border: none;\r\n  width: 80%;\r\n  padding: 0.75rem;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n#list-input::placeholder {\r\n  font-style: italic;\r\n  font-size: larger;\r\n}\r\n\r\n.list-item {\r\n  width: 80%;\r\n}\r\n\r\n.trash,\r\n.pencil {\r\n  display: none;\r\n  color: #ff7f50;\r\n}\r\n\r\n.active {\r\n  display: block;\r\n}\r\n\r\n.icons {\r\n  color: #dcdcdc;\r\n}\r\n\r\n.ellip-container {\r\n  cursor: all-scroll;\r\n}\r\n\r\nlabel:focus,\r\ninput:focus {\r\n  outline: none;\r\n}\r\n\r\n.line-through {\r\n  text-decoration: line-through;\r\n}\r\n\r\n#clear-btn {\r\n  background: #737373;\r\n  color: #fff;\r\n  border: none;\r\n  text-align: center;\r\n  padding: 1.25rem;\r\n  width: 100%;\r\n  font-size: 1.25rem;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;EACtB,wBAAwB;EACxB,UAAU;EACV,gBAAgB;EAChB,yBAAyB;EACzB,eAAe;AACjB;;AAEA;EACE,sBAAsB;AACxB;;AAEA;;EAEE,aAAa;EACb,8BAA8B;EAC9B,mBAAmB;EACnB,gBAAgB;EAChB,gCAAgC;EAChC,kBAAkB;AACpB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,YAAY;EACZ,UAAU;EACV,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;EAClB,iBAAiB;AACnB;;AAEA;EACE,UAAU;AACZ;;AAEA;;EAEE,aAAa;EACb,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;;EAEE,aAAa;AACf;;AAEA;EACE,6BAA6B;AAC/B;;AAEA;EACE,mBAAmB;EACnB,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,gBAAgB;EAChB,WAAW;EACX,kBAAkB;AACpB","sourcesContent":["body {\r\n  box-sizing: border-box;\r\n  margin: 0 auto auto auto;\r\n  width: 90%;\r\n  padding: 10% 10%;\r\n  background-color: #f5f5f5;\r\n  font-size: 16px;\r\n}\r\n\r\n#list-container {\r\n  background-color: #fff;\r\n}\r\n\r\n.container-row,\r\n.item-row {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  padding: 1.25rem;\r\n  border-bottom: 2px solid #f5f5f5;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n.first-icon {\r\n  color: #ababab;\r\n}\r\n\r\n#list-input {\r\n  border: none;\r\n  width: 80%;\r\n  padding: 0.75rem;\r\n  font-size: 1.25rem;\r\n}\r\n\r\n#list-input::placeholder {\r\n  font-style: italic;\r\n  font-size: larger;\r\n}\r\n\r\n.list-item {\r\n  width: 80%;\r\n}\r\n\r\n.trash,\r\n.pencil {\r\n  display: none;\r\n  color: #ff7f50;\r\n}\r\n\r\n.active {\r\n  display: block;\r\n}\r\n\r\n.icons {\r\n  color: #dcdcdc;\r\n}\r\n\r\n.ellip-container {\r\n  cursor: all-scroll;\r\n}\r\n\r\nlabel:focus,\r\ninput:focus {\r\n  outline: none;\r\n}\r\n\r\n.line-through {\r\n  text-decoration: line-through;\r\n}\r\n\r\n#clear-btn {\r\n  background: #737373;\r\n  color: #fff;\r\n  border: none;\r\n  text-align: center;\r\n  padding: 1.25rem;\r\n  width: 100%;\r\n  font-size: 1.25rem;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: \"Roboto\", sans-serif;\r\n}\r\n\r\n.container {\r\n  border-radius: 10px;\r\n  box-shadow: rgba(0, 0, 0, 0.28) 0 2px 8px;\r\n  transform: translate(-50%, -50%);\r\n  position: fixed;\r\n  width: 30rem;\r\n  top: 50%;\r\n  left: 50%;\r\n}\r\n\r\n.title {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  padding: 2.5%;\r\n}\r\n\r\n.todo-form {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-right: 0;\r\n  position: relative;\r\n  border-top: 0.5px solid #e9e9e9;\r\n  border-bottom: 0.5px solid #e9e9e9;\r\n}\r\n\r\n.todo-edit {\r\n  border: none;\r\n}\r\n\r\n.todo-input {\r\n  border: none;\r\n  outline: none;\r\n  font-style: italic;\r\n  padding: 3.5%;\r\n}\r\n\r\n.todo-item {\r\n  padding: 3.5%;\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: space-between;\r\n  border-bottom: 0.5px solid #e9e9e9;\r\n}\r\n\r\nbutton {\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n}\r\n\r\n.add-button {\r\n  position: relative;\r\n  right: 3.2%;\r\n}\r\n\r\n.clear-button {\r\n  padding: 3.5%;\r\n  cursor: pointer;\r\n  text-align: center;\r\n  background-color: #e9e9e9;\r\n  width: inherit;\r\n}\r\n\r\n.checked {\r\n  text-decoration: line-through;\r\n}\r\n\r\n.checkbox,\r\ni {\r\n  cursor: pointer;\r\n}\r\n\r\n.task-class {\r\n  border: none;\r\n}\r\n\r\n.task-class:focus {\r\n  outline: none;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,SAAS;EACT,UAAU;EACV,sBAAsB;EACtB,iCAAiC;AACnC;;AAEA;EACE,mBAAmB;EACnB,yCAAyC;EACzC,gCAAgC;EAChC,eAAe;EACf,YAAY;EACZ,QAAQ;EACR,SAAS;AACX;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,mBAAmB;EACnB,aAAa;AACf;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,gBAAgB;EAChB,kBAAkB;EAClB,+BAA+B;EAC/B,kCAAkC;AACpC;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,kBAAkB;EAClB,aAAa;AACf;;AAEA;EACE,aAAa;EACb,aAAa;EACb,mBAAmB;EACnB,8BAA8B;EAC9B,kCAAkC;AACpC;;AAEA;EACE,gBAAgB;EAChB,cAAc;EACd,YAAY;EACZ,UAAU;EACV,aAAa;EACb,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;EAClB,WAAW;AACb;;AAEA;EACE,aAAa;EACb,eAAe;EACf,kBAAkB;EAClB,yBAAyB;EACzB,cAAc;AAChB;;AAEA;EACE,6BAA6B;AAC/B;;AAEA;;EAEE,eAAe;AACjB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,aAAa;AACf","sourcesContent":["* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: \"Roboto\", sans-serif;\r\n}\r\n\r\n.container {\r\n  border-radius: 10px;\r\n  box-shadow: rgba(0, 0, 0, 0.28) 0 2px 8px;\r\n  transform: translate(-50%, -50%);\r\n  position: fixed;\r\n  width: 30rem;\r\n  top: 50%;\r\n  left: 50%;\r\n}\r\n\r\n.title {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  padding: 2.5%;\r\n}\r\n\r\n.todo-form {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-right: 0;\r\n  position: relative;\r\n  border-top: 0.5px solid #e9e9e9;\r\n  border-bottom: 0.5px solid #e9e9e9;\r\n}\r\n\r\n.todo-edit {\r\n  border: none;\r\n}\r\n\r\n.todo-input {\r\n  border: none;\r\n  outline: none;\r\n  font-style: italic;\r\n  padding: 3.5%;\r\n}\r\n\r\n.todo-item {\r\n  padding: 3.5%;\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: space-between;\r\n  border-bottom: 0.5px solid #e9e9e9;\r\n}\r\n\r\nbutton {\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n}\r\n\r\n.add-button {\r\n  position: relative;\r\n  right: 3.2%;\r\n}\r\n\r\n.clear-button {\r\n  padding: 3.5%;\r\n  cursor: pointer;\r\n  text-align: center;\r\n  background-color: #e9e9e9;\r\n  width: inherit;\r\n}\r\n\r\n.checked {\r\n  text-decoration: line-through;\r\n}\r\n\r\n.checkbox,\r\ni {\r\n  cursor: pointer;\r\n}\r\n\r\n.task-class {\r\n  border: none;\r\n}\r\n\r\n.task-class:focus {\r\n  outline: none;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -909,36 +768,40 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
-/* harmony import */ var _modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/displayList.js */ "./src/modules/displayList.js");
-/* harmony import */ var _modules_addTask_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/addTask.js */ "./src/modules/addTask.js");
-/* harmony import */ var _modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/getStorage.js */ "./src/modules/getStorage.js");
-/* harmony import */ var _modules_removeTask_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/removeTask.js */ "./src/modules/removeTask.js");
+/* harmony import */ var _modules_crud_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/crud.js */ "./src/modules/crud.js");
 
 
+var todoForm = document.querySelector('.todo-form');
+var todoList = document.querySelector('.todo-list');
+var todoInput = document.querySelector('.todo-input');
+var addBtn = document.querySelector('.add-button');
+var clearBtn = document.querySelector('.clear-button');
+var list = new _modules_crud_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+list.loadTasks();
 
-
-
-var listInput = document.getElementById('list-input');
-var clearBtn = document.getElementById('clear-btn');
-listInput.addEventListener('keyup', function (e) {
-  e.preventDefault();
-
-  if (e.key === 'Enter') {
-    (0,_modules_addTask_js__WEBPACK_IMPORTED_MODULE_2__["default"])(e.target.value);
-    listInput.value = '';
-    (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])());
+var load = function load() {
+  if (todoInput.value.trim()) {
+    list.addTodo(todoInput.value);
+    todoList.innerHTML = '';
+    todoInput.value = '';
+    list.loadTasks();
   }
+};
+
+clearBtn.addEventListener('click', function () {
+  list.clearAll();
+  list.loadTasks();
 });
-clearBtn.addEventListener('click', function (e) {
+todoForm.addEventListener('submit', function (e) {
   e.preventDefault();
-  (0,_modules_removeTask_js__WEBPACK_IMPORTED_MODULE_4__["default"])(-1);
-  (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])());
+  load();
 });
-window.addEventListener('load', function () {
-  (0,_modules_displayList_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_modules_getStorage_js__WEBPACK_IMPORTED_MODULE_3__["default"])());
+addBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  load();
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle64122f9c5e3c945684ee.js.map
+//# sourceMappingURL=bundle1baf64bc97bdf714e5f7.js.map

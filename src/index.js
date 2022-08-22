@@ -1,29 +1,34 @@
 import './style.css';
+import List from './modules/crud.js';
 
-const listArray = [
-  {
-    description: 'Coding session',
-    complete: true,
-    index: 0,
-  },
-  {
-    description: 'Evening team meeting',
-    complete: false,
-    index: 1,
-  },
-];
+const todoForm = document.querySelector('.todo-form');
+const todoList = document.querySelector('.todo-list');
+const todoInput = document.querySelector('.todo-input');
+const addBtn = document.querySelector('.add-button');
+const clearBtn = document.querySelector('.clear-button');
+const list = new List();
+list.loadTasks();
 
-const listToDo = document.getElementById('listToDo');
-
-const onLoad = () => {
-  listArray.forEach((task) => {
-    listToDo.innerHTML += `<ul id="item-list" class="items">
-                        <li class="toDo">
-                            <button class="completed">□</button>
-                            <div class="discription">${task.description}</div>
-                            <div class="dots">⋮</div>
-                        </li>
-                    </ul>`;
-  });
+const load = () => {
+  if (todoInput.value.trim()) {
+    list.addTodo(todoInput.value);
+    todoList.innerHTML = '';
+    todoInput.value = '';
+    list.loadTasks();
+  }
 };
-window.onload = onLoad();
+
+clearBtn.addEventListener('click', () => {
+  list.clearAll();
+  list.loadTasks();
+});
+
+todoForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  load();
+});
+
+addBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  load();
+});

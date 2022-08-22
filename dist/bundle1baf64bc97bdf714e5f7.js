@@ -2,6 +2,163 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/modules/crud.js":
+/*!*****************************!*\
+  !*** ./src/modules/crud.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var List = /*#__PURE__*/function () {
+  function List() {
+    _classCallCheck(this, List);
+
+    this.todos = [];
+  }
+
+  _createClass(List, [{
+    key: "getLS",
+    value: function getLS() {
+      this.todos = JSON.parse(localStorage.getItem('todos')) || [];
+    }
+  }, {
+    key: "saveLS",
+    value: function saveLS() {
+      localStorage.setItem('todos', JSON.stringify(this.todos));
+    }
+  }, {
+    key: "addTodo",
+    value: function addTodo(value) {
+      var length = this.todos.length + 1;
+      var todo = {
+        description: value,
+        completed: false,
+        index: length
+      };
+      this.todos.push(todo);
+      this.saveLS();
+    }
+  }, {
+    key: "updateIndex",
+    value: function updateIndex() {
+      var num = 1;
+      this.todos.forEach(function (task) {
+        task.index = num;
+        num += 1;
+      });
+    }
+  }, {
+    key: "remove",
+    value: function remove(id) {
+      var _this = this;
+
+      this.updateIndex();
+      this.todos.forEach(function (task) {
+        if (task.index === Number(id)) {
+          _this.todos.splice(task.index - 1, 1);
+
+          _this.updateIndex();
+        }
+      });
+    }
+  }, {
+    key: "clearAll",
+    value: function clearAll() {
+      this.todos = this.todos.filter(function (task) {
+        return task.completed === false;
+      });
+      this.saveLS();
+    }
+  }, {
+    key: "loadTasks",
+    value: function loadTasks() {
+      var _this2 = this;
+
+      var todoList = document.querySelector('.todo-list');
+
+      var createItem = function createItem(task) {
+        return "<div class=\"todo-item\">\n       <div id=\"".concat(task.index, "\">\n        <input type=\"checkbox\" name=\"box\" class=\"checkbox\" ").concat(task.completed ? 'checked' : '', " id=").concat(task.index, ">\n        <input id=\"").concat(task.index, "\" class=").concat(task.completed ? 'checked task-class' : 'task-class', " value=\"").concat(task.description, "\" type=\"text\">\n       </div>\n       <button class=\"remove-button\" id=\"").concat(task.index, "\">\n       <i class=\"fa-solid fa-trash-can\"></i>\n       </button>\n      </div>");
+      };
+
+      this.getLS();
+      todoList.innerHTML = '';
+      this.todos.forEach(function (task) {
+        return todoList.insertAdjacentHTML('beforeend', createItem(task));
+      });
+      var check = document.querySelectorAll('.checkbox');
+      var taskClass = todoList.querySelectorAll('.task-class');
+      check.forEach(function (checkbox, id) {
+        checkbox.addEventListener('change', function () {
+          if (checkbox.checked) {
+            var _taskClass$id;
+
+            (_taskClass$id = taskClass[id]) === null || _taskClass$id === void 0 ? void 0 : _taskClass$id.classList.add('checked');
+            _this2.todos = _this2.todos.map(function (task) {
+              if (task.index === parseInt(checkbox.parentElement.id, 10)) {
+                task.completed = true;
+              }
+
+              return task;
+            });
+
+            _this2.saveLS();
+          } else {
+            var _taskClass$id2;
+
+            (_taskClass$id2 = taskClass[id]) === null || _taskClass$id2 === void 0 ? void 0 : _taskClass$id2.classList.remove('checked');
+            _this2.todos = _this2.todos.map(function (task) {
+              if (task.index === parseInt(checkbox.parentElement.id, 10)) {
+                task.completed = false;
+              }
+
+              return task;
+            });
+
+            _this2.saveLS();
+          }
+        });
+      });
+      var removeBtn = document.querySelectorAll('.remove-button');
+      removeBtn.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var id = e.currentTarget.id;
+
+          _this2.remove(id);
+
+          _this2.saveLS();
+
+          todoList.innerHTML = '';
+
+          _this2.loadTasks(_this2.todos);
+        });
+      });
+      taskClass.forEach(function (textarea) {
+        textarea.addEventListener('change', function () {
+          _this2.todos[textarea.id - 1].description = textarea.value;
+
+          _this2.saveLS();
+        });
+      });
+    }
+  }]);
+
+  return List;
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (List);
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/style.css":
 /*!*************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/style.css ***!
@@ -20,9 +177,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
-___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "*,\r\n::after,\r\n::before {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  font-family: Lato, Helvetica, sans-serif;\r\n  font-style: normal;\r\n  color: white;\r\n  background-color: #f6f6f6;\r\n}\r\n\r\nul li {\r\n  list-style: none;\r\n  background-color: #fff;\r\n\r\n  /* width: 100%; */\r\n  max-width: 500px;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.to-do-list {\r\n  width: 100%;\r\n  padding: 20px 5%;\r\n  height: 100%;\r\n  overflow: hidden;\r\n  cursor: pointer;\r\n  transform: translate3d(0, 0, 0);\r\n  float: left;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.selected-list {\r\n  position: relative;\r\n  min-width: 0;\r\n  text-align: center;\r\n  padding-bottom: 1px;\r\n  box-sizing: border-box;\r\n  border-radius: 3px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);\r\n  margin: 0 auto;\r\n  top: 0;\r\n  max-width: 1000px;\r\n  width: 100%;\r\n  margin-top: 5%;\r\n}\r\n\r\n#stats {\r\n  position: relative;\r\n  padding: 0 92px 0 46px;\r\n  height: 50px;\r\n  background-color: #fff;\r\n  width: 100%;\r\n  display: flex;\r\n}\r\n\r\n#stats h2 {\r\n  color: #000;\r\n  font-size: 20px;\r\n  font-weight: 400;\r\n  padding: 20px 0;\r\n  line-height: 20px;\r\n  text-align: initial;\r\n  width: 80%;\r\n}\r\n\r\nhr {\r\n  color: #f6f6f6;\r\n}\r\n\r\n.refresh {\r\n  width: 20%;\r\n  margin-left: 82%;\r\n}\r\n\r\n.refresh .refreshIcon {\r\n  color: #545862;\r\n  padding: 20px 0;\r\n  width: 20%;\r\n  align-items: flex-end;\r\n}\r\n\r\n.list {\r\n  background-color: #fff;\r\n}\r\n\r\n#new-item-form {\r\n  width: 210%;\r\n  display: flex;\r\n}\r\n\r\ninput::-webkit-input-placeholder {\r\n  font-size: 20px;\r\n  line-height: 3;\r\n  font-style: italic;\r\n  padding-left: 4%;\r\n}\r\n\r\n#new-item-form input {\r\n  height: 60px;\r\n}\r\n\r\n#new-item-form #new-item {\r\n  padding: 0 16px;\r\n  width: 80%;\r\n  border-bottom-style: none;\r\n  border-color: #fff;\r\n  opacity: 0.5;\r\n  align-items: initial;\r\n}\r\n\r\n#new-item-form #submit-new-item {\r\n  cursor: pointer;\r\n  background-color: #fff;\r\n  border-block-color: #f6f6f6;\r\n  border-inline-start-color: #fff;\r\n  border-inline-end-color: #fff;\r\n  padding: 0 5%;\r\n}\r\n\r\n#add-item li #submit-new-item::after {\r\n  width: 100%;\r\n}\r\n\r\n.clear-completed {\r\n  opacity: 0.5;\r\n  border-bottom-style: none;\r\n  border-color: #f6f6f6;\r\n  font-size: 20px;\r\n  padding: 16px 0;\r\n}\r\n\r\n#listToDo {\r\n  width: 1000px;\r\n}\r\n\r\n.toDo {\r\n  display: flex;\r\n  max-width: 1000px;\r\n  height: 50px;\r\n}\r\n\r\n.toDo .completed {\r\n  width: 10%;\r\n  background-color: #fff;\r\n  border-style: none;\r\n  font-size: 50px;\r\n  color: hsl(0deg 5% 74%);\r\n}\r\n\r\n.toDo .discription {\r\n  width: 98%;\r\n  color: #000;\r\n  padding-top: 2%;\r\n  font-size: 20px;\r\n  text-align: initial;\r\n  padding-left: 5px;\r\n}\r\n\r\n.toDo .dots {\r\n  width: 20%;\r\n  color: hsl(0deg 5% 74%);\r\n  font-size: 40px;\r\n  text-align: end;\r\n  padding-right: 10%;\r\n  font-weight: 900;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAEA;;;EAGE,SAAS;EACT,UAAU;EACV,sBAAsB;EACtB,8BAA8B;AAChC;;AAEA;EACE,wCAAwC;EACxC,kBAAkB;EAClB,YAAY;EACZ,yBAAyB;AAC3B;;AAEA;EACE,gBAAgB;EAChB,sBAAsB;;EAEtB,iBAAiB;EACjB,gBAAgB;AAClB;;AAEA;EACE,qBAAqB;EACrB,cAAc;AAChB;;AAEA;EACE,WAAW;EACX,gBAAgB;EAChB,YAAY;EACZ,gBAAgB;EAChB,eAAe;EACf,+BAA+B;EAC/B,WAAW;EACX,sBAAsB;AACxB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,kBAAkB;EAClB,mBAAmB;EACnB,sBAAsB;EACtB,kBAAkB;EAClB,yCAAyC;EACzC,cAAc;EACd,MAAM;EACN,iBAAiB;EACjB,WAAW;EACX,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,sBAAsB;EACtB,YAAY;EACZ,sBAAsB;EACtB,WAAW;EACX,aAAa;AACf;;AAEA;EACE,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,eAAe;EACf,iBAAiB;EACjB,mBAAmB;EACnB,UAAU;AACZ;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,UAAU;EACV,gBAAgB;AAClB;;AAEA;EACE,cAAc;EACd,eAAe;EACf,UAAU;EACV,qBAAqB;AACvB;;AAEA;EACE,sBAAsB;AACxB;;AAEA;EACE,WAAW;EACX,aAAa;AACf;;AAEA;EACE,eAAe;EACf,cAAc;EACd,kBAAkB;EAClB,gBAAgB;AAClB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,eAAe;EACf,UAAU;EACV,yBAAyB;EACzB,kBAAkB;EAClB,YAAY;EACZ,oBAAoB;AACtB;;AAEA;EACE,eAAe;EACf,sBAAsB;EACtB,2BAA2B;EAC3B,+BAA+B;EAC/B,6BAA6B;EAC7B,aAAa;AACf;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,YAAY;EACZ,yBAAyB;EACzB,qBAAqB;EACrB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;EACb,iBAAiB;EACjB,YAAY;AACd;;AAEA;EACE,UAAU;EACV,sBAAsB;EACtB,kBAAkB;EAClB,eAAe;EACf,uBAAuB;AACzB;;AAEA;EACE,UAAU;EACV,WAAW;EACX,eAAe;EACf,eAAe;EACf,mBAAmB;EACnB,iBAAiB;AACnB;;AAEA;EACE,UAAU;EACV,uBAAuB;EACvB,eAAe;EACf,eAAe;EACf,kBAAkB;EAClB,gBAAgB;AAClB","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap\");\r\n\r\n*,\r\n::after,\r\n::before {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  font-family: Lato, Helvetica, sans-serif;\r\n  font-style: normal;\r\n  color: white;\r\n  background-color: #f6f6f6;\r\n}\r\n\r\nul li {\r\n  list-style: none;\r\n  background-color: #fff;\r\n\r\n  /* width: 100%; */\r\n  max-width: 500px;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n  color: inherit;\r\n}\r\n\r\n.to-do-list {\r\n  width: 100%;\r\n  padding: 20px 5%;\r\n  height: 100%;\r\n  overflow: hidden;\r\n  cursor: pointer;\r\n  transform: translate3d(0, 0, 0);\r\n  float: left;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.selected-list {\r\n  position: relative;\r\n  min-width: 0;\r\n  text-align: center;\r\n  padding-bottom: 1px;\r\n  box-sizing: border-box;\r\n  border-radius: 3px;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);\r\n  margin: 0 auto;\r\n  top: 0;\r\n  max-width: 1000px;\r\n  width: 100%;\r\n  margin-top: 5%;\r\n}\r\n\r\n#stats {\r\n  position: relative;\r\n  padding: 0 92px 0 46px;\r\n  height: 50px;\r\n  background-color: #fff;\r\n  width: 100%;\r\n  display: flex;\r\n}\r\n\r\n#stats h2 {\r\n  color: #000;\r\n  font-size: 20px;\r\n  font-weight: 400;\r\n  padding: 20px 0;\r\n  line-height: 20px;\r\n  text-align: initial;\r\n  width: 80%;\r\n}\r\n\r\nhr {\r\n  color: #f6f6f6;\r\n}\r\n\r\n.refresh {\r\n  width: 20%;\r\n  margin-left: 82%;\r\n}\r\n\r\n.refresh .refreshIcon {\r\n  color: #545862;\r\n  padding: 20px 0;\r\n  width: 20%;\r\n  align-items: flex-end;\r\n}\r\n\r\n.list {\r\n  background-color: #fff;\r\n}\r\n\r\n#new-item-form {\r\n  width: 210%;\r\n  display: flex;\r\n}\r\n\r\ninput::-webkit-input-placeholder {\r\n  font-size: 20px;\r\n  line-height: 3;\r\n  font-style: italic;\r\n  padding-left: 4%;\r\n}\r\n\r\n#new-item-form input {\r\n  height: 60px;\r\n}\r\n\r\n#new-item-form #new-item {\r\n  padding: 0 16px;\r\n  width: 80%;\r\n  border-bottom-style: none;\r\n  border-color: #fff;\r\n  opacity: 0.5;\r\n  align-items: initial;\r\n}\r\n\r\n#new-item-form #submit-new-item {\r\n  cursor: pointer;\r\n  background-color: #fff;\r\n  border-block-color: #f6f6f6;\r\n  border-inline-start-color: #fff;\r\n  border-inline-end-color: #fff;\r\n  padding: 0 5%;\r\n}\r\n\r\n#add-item li #submit-new-item::after {\r\n  width: 100%;\r\n}\r\n\r\n.clear-completed {\r\n  opacity: 0.5;\r\n  border-bottom-style: none;\r\n  border-color: #f6f6f6;\r\n  font-size: 20px;\r\n  padding: 16px 0;\r\n}\r\n\r\n#listToDo {\r\n  width: 1000px;\r\n}\r\n\r\n.toDo {\r\n  display: flex;\r\n  max-width: 1000px;\r\n  height: 50px;\r\n}\r\n\r\n.toDo .completed {\r\n  width: 10%;\r\n  background-color: #fff;\r\n  border-style: none;\r\n  font-size: 50px;\r\n  color: hsl(0deg 5% 74%);\r\n}\r\n\r\n.toDo .discription {\r\n  width: 98%;\r\n  color: #000;\r\n  padding-top: 2%;\r\n  font-size: 20px;\r\n  text-align: initial;\r\n  padding-left: 5px;\r\n}\r\n\r\n.toDo .dots {\r\n  width: 20%;\r\n  color: hsl(0deg 5% 74%);\r\n  font-size: 40px;\r\n  text-align: end;\r\n  padding-right: 10%;\r\n  font-weight: 900;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: \"Roboto\", sans-serif;\r\n}\r\n\r\n.container {\r\n  border-radius: 10px;\r\n  box-shadow: rgba(0, 0, 0, 0.28) 0 2px 8px;\r\n  transform: translate(-50%, -50%);\r\n  position: fixed;\r\n  width: 30rem;\r\n  top: 50%;\r\n  left: 50%;\r\n}\r\n\r\n.title {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  padding: 2.5%;\r\n}\r\n\r\n.todo-form {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-right: 0;\r\n  position: relative;\r\n  border-top: 0.5px solid #e9e9e9;\r\n  border-bottom: 0.5px solid #e9e9e9;\r\n}\r\n\r\n.todo-edit {\r\n  border: none;\r\n}\r\n\r\n.todo-input {\r\n  border: none;\r\n  outline: none;\r\n  font-style: italic;\r\n  padding: 3.5%;\r\n}\r\n\r\n.todo-item {\r\n  padding: 3.5%;\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: space-between;\r\n  border-bottom: 0.5px solid #e9e9e9;\r\n}\r\n\r\nbutton {\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n}\r\n\r\n.add-button {\r\n  position: relative;\r\n  right: 3.2%;\r\n}\r\n\r\n.clear-button {\r\n  padding: 3.5%;\r\n  cursor: pointer;\r\n  text-align: center;\r\n  background-color: #e9e9e9;\r\n  width: inherit;\r\n}\r\n\r\n.checked {\r\n  text-decoration: line-through;\r\n}\r\n\r\n.checkbox,\r\ni {\r\n  cursor: pointer;\r\n}\r\n\r\n.task-class {\r\n  border: none;\r\n}\r\n\r\n.task-class:focus {\r\n  outline: none;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,SAAS;EACT,UAAU;EACV,sBAAsB;EACtB,iCAAiC;AACnC;;AAEA;EACE,mBAAmB;EACnB,yCAAyC;EACzC,gCAAgC;EAChC,eAAe;EACf,YAAY;EACZ,QAAQ;EACR,SAAS;AACX;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,mBAAmB;EACnB,aAAa;AACf;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,gBAAgB;EAChB,kBAAkB;EAClB,+BAA+B;EAC/B,kCAAkC;AACpC;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,kBAAkB;EAClB,aAAa;AACf;;AAEA;EACE,aAAa;EACb,aAAa;EACb,mBAAmB;EACnB,8BAA8B;EAC9B,kCAAkC;AACpC;;AAEA;EACE,gBAAgB;EAChB,cAAc;EACd,YAAY;EACZ,UAAU;EACV,aAAa;EACb,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;EAClB,WAAW;AACb;;AAEA;EACE,aAAa;EACb,eAAe;EACf,kBAAkB;EAClB,yBAAyB;EACzB,cAAc;AAChB;;AAEA;EACE,6BAA6B;AAC/B;;AAEA;;EAEE,eAAe;AACjB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,aAAa;AACf","sourcesContent":["* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: \"Roboto\", sans-serif;\r\n}\r\n\r\n.container {\r\n  border-radius: 10px;\r\n  box-shadow: rgba(0, 0, 0, 0.28) 0 2px 8px;\r\n  transform: translate(-50%, -50%);\r\n  position: fixed;\r\n  width: 30rem;\r\n  top: 50%;\r\n  left: 50%;\r\n}\r\n\r\n.title {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  padding: 2.5%;\r\n}\r\n\r\n.todo-form {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-right: 0;\r\n  position: relative;\r\n  border-top: 0.5px solid #e9e9e9;\r\n  border-bottom: 0.5px solid #e9e9e9;\r\n}\r\n\r\n.todo-edit {\r\n  border: none;\r\n}\r\n\r\n.todo-input {\r\n  border: none;\r\n  outline: none;\r\n  font-style: italic;\r\n  padding: 3.5%;\r\n}\r\n\r\n.todo-item {\r\n  padding: 3.5%;\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: space-between;\r\n  border-bottom: 0.5px solid #e9e9e9;\r\n}\r\n\r\nbutton {\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n}\r\n\r\n.add-button {\r\n  position: relative;\r\n  right: 3.2%;\r\n}\r\n\r\n.clear-button {\r\n  padding: 3.5%;\r\n  cursor: pointer;\r\n  text-align: center;\r\n  background-color: #e9e9e9;\r\n  width: inherit;\r\n}\r\n\r\n.checked {\r\n  text-decoration: line-through;\r\n}\r\n\r\n.checkbox,\r\ni {\r\n  cursor: pointer;\r\n}\r\n\r\n.task-class {\r\n  border: none;\r\n}\r\n\r\n.task-class:focus {\r\n  outline: none;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -612,27 +768,40 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
+/* harmony import */ var _modules_crud_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/crud.js */ "./src/modules/crud.js");
 
-var listArray = [{
-  description: 'Coding session',
-  complete: true,
-  index: 0
-}, {
-  description: 'Evening team meeting',
-  complete: false,
-  index: 1
-}];
-var listToDo = document.getElementById('listToDo');
 
-var onLoad = function onLoad() {
-  listArray.forEach(function (task) {
-    listToDo.innerHTML += "<ul id=\"item-list\" class=\"items\">\n                        <li class=\"toDo\">\n                            <button class=\"completed\">\u25A1</button>\n                            <div class=\"discription\">".concat(task.description, "</div>\n                            <div class=\"dots\">\u22EE</div>\n                        </li>\n                    </ul>");
-  });
+var todoForm = document.querySelector('.todo-form');
+var todoList = document.querySelector('.todo-list');
+var todoInput = document.querySelector('.todo-input');
+var addBtn = document.querySelector('.add-button');
+var clearBtn = document.querySelector('.clear-button');
+var list = new _modules_crud_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+list.loadTasks();
+
+var load = function load() {
+  if (todoInput.value.trim()) {
+    list.addTodo(todoInput.value);
+    todoList.innerHTML = '';
+    todoInput.value = '';
+    list.loadTasks();
+  }
 };
 
-window.onload = onLoad();
+clearBtn.addEventListener('click', function () {
+  list.clearAll();
+  list.loadTasks();
+});
+todoForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  load();
+});
+addBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  load();
+});
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundlefddedc7d60907473a0ac.js.map
+//# sourceMappingURL=bundle1baf64bc97bdf714e5f7.js.map

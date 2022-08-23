@@ -26,7 +26,7 @@ Run Dev Server (Port 3000)
 ## Build for production
         npm run build
 
-## [Live Demo](https://alierpm.github.io/To-Do-List/dist/index.html) 
+## [Live Demo](https://alierpm.github.io/To-Do-List/) 
 The demo app is a To-Do-List. Build in a webpack environment
   * index.js (main javascript)
   * index.html (template)

@@ -4,21 +4,21 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist",
     "start": "webpack serve --open",
     "build": "webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlierPM/webpack-boilerplate.git"
+    "url": "git+https://github.com/AlierPM/To-Do-List.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alier Philip Maguet",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AlierPM/webpack-boilerplate/issues"
+    "url": "https://github.com/AlierPM/To-Do-List/issues"
   },
-  "homepage": "https://alierpm.github.io/To-Do-List/dist/index.html?",
+  "homepage": "https://alierpm.github.io/To-Do-List",
   "devDependencies": {
     "@babel/core": "^7.18.10",
     "@babel/preset-env": "^7.18.10",

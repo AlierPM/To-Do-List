@@ -1,13 +1,14 @@
-// import './addTask.js'
-// import { Task } from "../modules/Task.js"
+// import '../modules/addTask.js';
+import Task from '../modules/Task.js';
+import updateArray from '../modules/updateArray.js';
 
-class Task {
-    constructor(description, completed, id) {
-        this.description = description;
-        this.completed = completed;
-        this.id = id;
-    }
-}
+// class Task {
+//     constructor(description, completed, id) {
+//         this.description = description;
+//         this.completed = completed;
+//         this.id = id;
+//     }
+// }
 
 const localStorageMock = (() => {
     let taskList = [];
@@ -41,6 +42,23 @@ const addTask = (description) => {
     }
 };
 
+// const updateArray = (taskArray) => {
+//     taskArray.forEach((task) => {
+//       task.id = taskArray.indexOf(task) + 1;
+//     });
+// };
+
+const removeTask = (id) => {
+    let taskArray = localStorageMock.getItem();
+    if (id >= 0) {
+      taskArray = taskArray.filter((task) => task.id !== id);
+    } else {
+      taskArray = taskArray.filter((task) => !task.completed);
+    }
+    updateArray(taskArray);
+    localStorageMock.setItem(taskArray);
+};
+
 describe ('Add', ()=>{
   test('local storage have two items', ()=>{
     addTask('task1');
@@ -48,4 +66,12 @@ describe ('Add', ()=>{
     const array = localStorageMock.getItem();
     expect(array.length).toBe(2);
   })
+})
+
+describe('remove', () => {
+    test('local storage should have one item', () => {
+        removeTask(0);
+        const array = localStorageMock.getItem();
+        expect(array.length).toBe(1);
+    })
 })

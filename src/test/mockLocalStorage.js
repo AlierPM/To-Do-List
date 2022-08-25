@@ -4,8 +4,8 @@ const localStorageMock = (() => {
     getItem(key) {
       return taskList[key];
     },
-    setItem(key, value) {
-      taskList[key] = value.toString();
+    setItem(value) {
+      taskList.push(value.toString());
     },
     clear() {
       taskList = [];
@@ -18,3 +18,5 @@ const localStorageMock = (() => {
 Object.defineProperty(window, 'localStorage', {
   value: localStorageMock
 });
+
+export default localStorageMock();

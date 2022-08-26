@@ -1,4 +1,4 @@
-// Update booksArray with data from localStorage
+// Update TaskArray with data from localStorage
 const setLocalStorage = (taskArray) => {
   localStorage.setItem('taskList', JSON.stringify(taskArray));
 };

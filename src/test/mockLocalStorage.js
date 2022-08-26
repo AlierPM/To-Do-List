@@ -12,11 +12,11 @@ const localStorageMock = (() => {
     },
     removeItem(key) {
       delete taskList[key];
-    }
+    },
   };
 })();
 Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock
+  value: localStorageMock,
 });
 
 export default localStorageMock();
